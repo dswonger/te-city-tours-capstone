@@ -41,13 +41,20 @@ INSERT INTO museums (museum_name, museum_description, museum_type, clicked)
 
 
 CREATE TABLE monuments (
-         Monument_id SERIAL,
-         Name varchar(200) NOT NULL,
-         Description varchar (2000) NOT NULL,
-         Year_built TIMESTAMP NOT NULL,
-         CONSTRAINT PK_monuments PRIMARY KEY (Monument_id)
+    Monument_id SERIAL,
+    Name varchar(200) NOT NULL,
+    Description varchar (2000) NOT NULL,
+    Year_built TIMESTAMP NOT NULL,
+    CONSTRAINT PK_monuments PRIMARY KEY (Monument_id)
 );
 
+CREATE TABLE itinerary (
+    itinerary_id SERIAL,
+    Landmark_name varchar (200) NOT NULL,
+    Starting_point varchar(200) NOT NULL,
+    Date_of_itinerary TIMESTAMP NOT NULL,
+    CONSTRAINT PK_itinerary PRIMARY KEY (itinerary_id)
 
+);
 
 COMMIT TRANSACTION;
