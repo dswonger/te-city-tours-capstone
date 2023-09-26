@@ -28,11 +28,7 @@ CREATE TABLE monuments (
          Monument_id SERIAL,
          Name varchar(200) NOT NULL,
          Description varchar (2000) NOT NULL,
-         Available_days varchar(50) NOT NULL,
-     	Available_hours TIME NOT NUll,
          Year_built TIMESTAMP NOT NULL,
-         Rate numeric NOT NULL,
-         Review varchar (1000),
          CONSTRAINT PK_monuments PRIMARY KEY (Monument_id)
 );
 
