@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class MuseumController {
 
 
-//    @RequestMapping (path="/allMueseums", method = RequestMethod.GET)
+//    @RequestMapping (path="/allMuseums", method = RequestMethod.GET)
 
 }
