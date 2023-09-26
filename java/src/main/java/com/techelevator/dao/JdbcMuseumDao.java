@@ -21,9 +21,11 @@ public class JdbcMuseumDao implements MuseumDao{
     }
 
     public List<Museum> allMuseumsList () {
-        List <Museum> allMuseums = new ArrayList<>();
+
         String sql = "SELECT * FROM MUSEUMS;";
         SqlRowSet museumSqlResults = this.template.queryForRowSet(sql);
+
+        List <Museum> allMuseums = new ArrayList<>();
         while (museumSqlResults.next()) {
             Museum eachMuseum = mapRowToMuseum(museumSqlResults);
 
