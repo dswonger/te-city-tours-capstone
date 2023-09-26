@@ -34,10 +34,6 @@ CREATE TABLE museums (
     museum_id SERIAL,
     museum_name varchar(100) NOT NULL,
     museum_description varchar (100) NOT NULL,
-    museum_available_days varchar (100) NOT NULL,
-    museum_available_hours varchar (100) NOT NULL,
-    museum_rate numeric (1) NOT NULL,
-    museum_review varchar (100) NOT NULL,
     museum_type varchar (100) NOT NULL,
     museum_price numeric(3,2) NOT NULL,
     clicked boolean NOT NULL
