@@ -2,6 +2,8 @@ BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
 
+DROP TABLE IF EXISTS museums;
+
 CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
@@ -9,5 +11,39 @@ CREATE TABLE users (
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE museums (
+    museum_id SERIAL,
+    museum_name varchar(100) NOT NULL,
+    museum_description varchar (100) NOT NULL,
+    museum_available_days varchar (100) NOT NULL,
+    museum_available_hours varchar (100) NOT NULL,
+    museum_rate numeric (1) NOT NULL,
+    museum_review varchar (100) NOT NULL,
+    museum_type varchar (100) NOT NULL,
+    museum_price numeric(3,2) NOT NULL,
+    clicked boolean NOT NULL
+);
+
+
+
 
 COMMIT TRANSACTION;
