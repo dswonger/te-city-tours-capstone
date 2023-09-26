@@ -31,8 +31,4 @@ CREATE TABLE monuments (
     Year_built TIMESTAMP NOT NULL,
     CONSTRAINT PK_monuments PRIMARY KEY (Monument_id)
 );
-
-
-
-
 COMMIT TRANSACTION;
