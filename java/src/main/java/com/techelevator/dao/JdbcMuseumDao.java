@@ -36,8 +36,8 @@ public class JdbcMuseumDao implements MuseumDao{
 
     private Museum mapRowToMuseum (SqlRowSet results) {
         Museum museum = new Museum();
-        museum.setMuseumId(results.getInt("museum_id"));
-        museum.setMuseumName(results.getString("museum_name"));
+        museum.setId(results.getInt("museum_id"));
+        museum.setName(results.getString("museum_name"));
         museum.setMuseumType(results.getString("museum_type"));
         return museum;
 
