@@ -74,7 +74,7 @@ const router = new Router({
     },
     {
       path: "/itineraryPage",
-      name: "Map",
+      name: "map",
       component: ItineraryPage,
       meta: {
         requiresAuth: true
