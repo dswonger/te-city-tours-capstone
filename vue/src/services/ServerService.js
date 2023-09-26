@@ -23,6 +23,6 @@ export default {
     },
 
     deleteMuseum(id) {
-        return axios.delete(`/Museaum/${id}`);
+        return axios.delete(`/Museum/${id}`);
     }
 }

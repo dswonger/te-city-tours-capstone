@@ -16,6 +16,10 @@ public class Attractions {
 
     }
 
+    public Attractions () {
+
+    }
+
     public int getId() {
         return id;
     }

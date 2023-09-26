@@ -5,6 +5,9 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import Monuments from '../views/Monuments.vue'
+import Museums from '../views/Museums.vue'
+import ItineraryPage from '../views/ItineraryPage.vue'
 
 Vue.use(Router)
 
@@ -51,6 +54,30 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/allMonuments",
+      name: "monuments",
+      component: Monuments,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/allMuseums",
+      name: "museums",
+      component: Museums,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/itineraryPage",
+      name: "Map",
+      component: ItineraryPage,
+      meta: {
+        requiresAuth: true
       }
     }
   ]
