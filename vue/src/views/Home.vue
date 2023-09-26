@@ -1,12 +1,26 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>Welcome to Washington DC</h1>
     <p>If you are seeing this, you are authenticated.</p>
   </div>
 </template>
 
 <script>
+import service from '../services/ServerService'
+
 export default {
-  name: "home"
+  name: "home",
+  data() {
+    return {
+      monumentsList : []
+    }
+  },
+  created() {
+    service.getAllMonuments().then(
+      (response) => {
+        this.monumentsList = response.data;
+      }
+    );
+  }
 };
 </script>
