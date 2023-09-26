@@ -23,4 +23,10 @@ MuseumDao dao;
       return dao.allMuseumsList();
   }
 
+  @RequestMapping (path="/addMuseums", method = RequestMethod.POST)
+  public Museum addMuseum (Museum newMuseum) {
+
+    return dao.addNewMuseum(newMuseum);
+  }
+
 }

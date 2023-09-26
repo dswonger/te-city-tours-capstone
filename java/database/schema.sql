@@ -18,7 +18,6 @@ CREATE TABLE museums (
     museum_name varchar(100) NOT NULL,
     museum_description varchar (100) NOT NULL,
     museum_type varchar (100) NOT NULL,
-    museum_price numeric(3,2) NOT NULL,
     clicked boolean NOT NULL
 );
 

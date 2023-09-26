@@ -19,7 +19,7 @@ public class JdbcMuseumDao implements MuseumDao{
     public JdbcMuseumDao (DataSource source) {
         template = new JdbcTemplate(source);
     }
-
+    @Override
     public List<Museum> allMuseumsList () {
 
         String sql = "SELECT * FROM MUSEUMS;";
@@ -34,6 +34,16 @@ public class JdbcMuseumDao implements MuseumDao{
 
         return allMuseums;
 
+    }
+
+    @Override
+    public Museum addNewMuseum(Museum newMuseum) {
+        String sql = "INSERT INTO museums (museum_name, museum_description, museum_type, clicked)" +
+                " VALUES (?, ?, ?, ?) RETURNING museum_id";
+        Integer newMuseumId = this.template.queryForObject(sql,Integer.class, newMuseum.getName(), newMuseum.getDescription(),
+                newMuseum.getMuseumType(), false);
+        newMuseum.setId(newMuseumId);
+        return newMuseum;
     }
 
     private Museum mapRowToMuseum (SqlRowSet results) {
