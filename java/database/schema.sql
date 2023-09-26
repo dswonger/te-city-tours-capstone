@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE museums (
     museum_id SERIAL,
     museum_name varchar(100) NOT NULL,
-    museum_description varchar (100) NOT NULL,
+    museum_description varchar (1000) NOT NULL,
     museum_type varchar (100) NOT NULL,
     clicked boolean NOT NULL
 );
@@ -24,7 +24,7 @@ CREATE TABLE museums (
 INSERT INTO museums (museum_name, museum_description, museum_type, clicked)
     VALUES ('National Gallery of Art', 'The National Gallery of Art, founded as a gift to the nation, serves as a center of visual art, education, and culture. Our collection of more than 150,000 paintings, sculpture, decorative arts, photographs, prints, and drawings spans the history of Western art and showcases some of the triumphs of human creativity. Across 363 days a year, the National Gallery offers a full spectrum of special exhibitions and public programs free of charge.',
     'Art Museum', true);
-INSERT INTO museums (museum_name, museum description, museum_type, clicked)
+INSERT INTO museums (museum_name, museum_description, museum_type, clicked)
     VALUES ('Smithsonian National Museum of Natural History', "The National Museum of Natural History is a natural history museum administered by the Smithsonian Institution, located on the National Mall in Washington, D.C., United States. It has free admission and is open 364 days a year. In 2022, with 3.9 million visitors, it was the most-visited museum in the United States.", 'Science Museum', true);
 INSERT INTO museums (museum_name, museum_description, museum_type, clicked)
     VALUES ('National Air and Space Museum', "The National Air and Space Museum maintains the world's largest collection of historic aircraft and spacecraft. It is also a vital center for historical research on aviation and spaceflight and related science and technology, and home to the Center for Earth and Planetary Studies, which performs original research.", 'Science Museum', true);
