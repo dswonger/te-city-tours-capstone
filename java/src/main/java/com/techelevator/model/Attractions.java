@@ -20,6 +20,10 @@ public class Attractions {
         this.review = review;
     }
 
+    public Attractions () {
+
+    }
+
     public int getId() {
         return id;
     }
