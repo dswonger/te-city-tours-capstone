@@ -47,4 +47,14 @@ CREATE TABLE monuments (
     Year_built TIMESTAMP NOT NULL,
     CONSTRAINT PK_monuments PRIMARY KEY (Monument_id)
 );
+
+CREATE TABLE itinerary (
+    itinerary_id SERIAL,
+    Landmark_name varchar (200) NOT NULL,
+    Starting_point varchar(200) NOT NULL,
+    Date_of_itinerary TIMESTAMP NOT NULL,
+    CONSTRAINT PK_itinerary PRIMARY KEY (itinerary_id)
+
+);
+
 COMMIT TRANSACTION;

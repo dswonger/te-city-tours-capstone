@@ -4,6 +4,7 @@ import com.techelevator.dao.MonumentsDao;
 import com.techelevator.model.Monuments;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -17,7 +18,7 @@ public class MonumentsController {
         this.monumentsDao = monumentsDao;
 
     }
-    @RequestMapping(path ="/monuments")
+    @RequestMapping(path ="/monuments", method = RequestMethod.GET)
     public List<Monuments> getAllMonuments(){
         return monumentsDao.listAll();
     }
