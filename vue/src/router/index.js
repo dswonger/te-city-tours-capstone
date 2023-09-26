@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Monuments from '../views/Monuments.vue'
 import Museums from '../views/Museums.vue'
+import ItineraryPage from '../views/ItineraryPage.vue'
 
 Vue.use(Router)
 
@@ -67,7 +68,15 @@ const router = new Router({
       path: "/allMuseums",
       name: "museums",
       component: Museums,
-      metha: {
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/itineraryPage",
+      name: "map",
+      component: ItineraryPage,
+      meta: {
         requiresAuth: true
       }
     }
