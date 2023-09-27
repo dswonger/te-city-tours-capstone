@@ -4,6 +4,10 @@ public class Attractions {
 
     private String name;
     private int id;
+    private String address;
+    private String image;
+    private int reviews;
+    private String type;
     private String description;
 
 
@@ -14,6 +18,38 @@ public class Attractions {
         this.description = description;
 
 
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(int reviews) {
+        this.reviews = reviews;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Attractions () {
