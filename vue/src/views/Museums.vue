@@ -2,10 +2,10 @@
 <form v-on:submit.prevent="createItinerary">
   <div class="monuments">
     <h1>Museums HomePage</h1>
-    <p>{If you are seeing this, you are authenticated.}</p>
+    
     <div class="museumCard" v-for="museum in museumsList" v-bind:key="museum.id">
         <p>{{museum.name}}</p> 
-        <p>{{museum.museumType}}</p>
+        <p>{{museum.description}}</p>
         <p>Rating: {{museum.rate}}</p>
         <p><input type="checkbox" name="museumName" value="museumName" unchecked>Add to Itinerary</p>
         <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 div.museumCard {
     border: 1px black solid;
     border-radius: 6px;
