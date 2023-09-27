@@ -30,7 +30,7 @@
 </template>
 
 
-<script>
+<script scoped>
 import authService from "../services/AuthService";
 
 export default {
@@ -78,7 +78,7 @@ label {
 </style>
 
 
-<style scoped>
+<style>
 #login {
   display: flex;
   justify-content: center;
