@@ -100,11 +100,18 @@ VALUES ('World War II Memorial', '1750 Independence Ave SW, Washington, DC 20024
 
 CREATE TABLE itinerary (
     itinerary_id SERIAL,
-    Landmark_name varchar (200) NOT NULL,
-    Starting_point varchar(200) NOT NULL,
+    location_id int  NOT NULL,
+    Starting_point int NOT NULL,
     Date_of_itinerary TIMESTAMP NOT NULL,
     CONSTRAINT PK_itinerary PRIMARY KEY (itinerary_id)
+    CONSTRAINT FK_location_id FOREIGN KEY
 
 );
+CREATE TABLE review(
+    review_id SERIAL,
+    attraction_id int NOT NULL,
+    review_note varchar(1000) NOT NULL
+
+)
 
 COMMIT TRANSACTION;
