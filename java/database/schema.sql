@@ -21,7 +21,8 @@ CREATE TABLE attractions (
     image varchar (100000) NOT NULL,
     rate int,
     reviews int,
-    type varchar (100000) NOT NULL
+    type varchar (100000) NOT NULL,
+	 CONSTRAINT PK_attractions PRIMARY KEY (id)
 );
 
 
@@ -99,21 +100,36 @@ INSERT INTO attractions (name, address, description, image, type)
 VALUES ('World War II Memorial', '1750 Independence Ave SW, Washington, DC 20024', 'Iconic outdoor memorial honoring the 16 million Americans who served during World War II.',
  'src/main/resources/images/monuments/World-War-II-Memorial.jpg', 'Monument');
 
+CREATE SEQUENCE seq_itinerary_id
+  INCREMENT BY 1
+  START WITH 1001
+  NO MAXVALUE;
 
 CREATE TABLE itinerary (
     itinerary_id SERIAL,
     location_id int  NOT NULL,
     Starting_point int NOT NULL,
     Date_of_itinerary TIMESTAMP NOT NULL,
-    CONSTRAINT PK_itinerary PRIMARY KEY (itinerary_id)
-    CONSTRAINT FK_location_id FOREIGN KEY
+    user_id int NOT NULL,
+    CONSTRAINT PK_itinerary PRIMARY KEY (itinerary_id),
+    CONSTRAINT FK_itinerary_attractions_id  FOREIGN KEY ( location_id) REFERENCES attractions(id),
+    CONSTRAINT FK_itinerary_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 
 );
 CREATE TABLE review(
     review_id SERIAL,
     attraction_id int NOT NULL,
-    review_note varchar(1000) NOT NULL
+    review_note varchar(1000) NOT NULL,
+    CONSTRAINT FK_review_attractions_id  FOREIGN KEY ( attraction_id) REFERENCES attractions(id)
 
-)
+);
+INSERT INTO review(attraction_id,review_note)
+VALUES (1,'As I love arts, I really enjoyed this visit. It has two wings and both with are entertaining. You can go from one wing to another either from outside or indoor ( there’s like a tunnel that connects the two) please see pic.. there’s shop for souvenirs and snack outlet. They also have an interactive drawing area to show your skills which is fun.'),
+(1,'An outstanding display of art, this gallery is a must visit for those visiting Washington DC. Very well organised, ideally one needs a full day to do justice to this venue.'),
+(2,'A museum filled with lots of informations from all sorts of categories where life evolves and it’s existence. The museum delivers information either thru reading or visual presentation. One particular show was the evolution of technology were I found a lot of stuffs that I had used when I was a kid to teen to young adulthood. It just bring me lots of great memories. The museum also have shops inside. There are clean toilets. It’s only open until half 5.'),
+(2,'Lots of interesting exhibits, air con throughout the building was a great plus after walking around Washington  National Mall on a very hot day. This was our second visit here but it was just as interesting as our first visit in 2002'),
+(3,'Lots to see!! Loved the Wright Brothers exhibit and the space experience. Even with a portion of the museum closed for renovation, still plenty to take in and enjoy! Highly recommended!!'),
+(3,'Very informative- lots of updates from last visit. Lots of good gift options. Appropriate for all ages.');
+
 
 COMMIT TRANSACTION;
