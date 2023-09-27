@@ -47,14 +47,33 @@ public class JdbcAttractionsDao implements AttractionsDao{
     }
 
     @Override
-    public Attractions addAttraction() {
-        return null;
+    public boolean addAttraction(Attractions newAttraction) {
+        String sql = "INSERT INTO attractions (name, address, description, type) VALUES (?, ?, ?, ?);";
+
+       int numberOfRows= template.update(newAttraction.getName(), newAttraction.getAddress(), newAttraction.getDescription(), newAttraction.getType());
+
+       if (numberOfRows ==1) {
+           return true;
+       } else {
+           return false;
+       }
+
+
     }
 
     @Override
-    public Attractions updateAttraction() {
-        return null;
+    public boolean updateAttraction(Attractions updatedAttraction) {
+        String sql = "UPDATE attractions SET name = ?, address = ?, description = ?, type = ?;";
+        int numberOfRows = template.update(updatedAttraction.getName(), updatedAttraction.getAddress(),
+                updatedAttraction.getDescription(), updatedAttraction.getType());
+
+        if (numberOfRows == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
     @Override
     public int deleteAttraction(int id) {

@@ -4,10 +4,7 @@ import com.techelevator.dao.AttractionsDao;
 import com.techelevator.model.Attractions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,19 @@ public class AttractionsController {
     return dao.getAllMonuments();
   }
 
+@RequestMapping (path = "/addAttraction", method = RequestMethod.POST)
+  public boolean addAttraction (@RequestBody Attractions attraction) {
+   return dao.addAttraction(attraction);
+}
+
+@RequestMapping (path = "/editAttraction", method = RequestMethod.PUT)
+  public boolean editAttraction (@RequestBody Attractions attraction) {
+
+    return dao.updateAttraction(attraction); }
+
+  @RequestMapping (path = "/puppy/{id}", method = RequestMethod.DELETE)
+  public int deleteAttraction (@PathVariable int id) {
+    return dao.deleteAttraction(id);
+  }
 
 }
