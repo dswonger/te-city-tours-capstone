@@ -41,5 +41,6 @@ div.museumCard {
     border-radius: 6px;
     padding: 1rem;
     margin: 10px;
+    
 }
 </style>
