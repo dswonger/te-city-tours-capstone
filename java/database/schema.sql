@@ -40,12 +40,6 @@ INSERT INTO museums (museum_name, museum_description, museum_type, clicked)
     VALUES ('International Spy Museum', 'The International Spy Museum is an independent non-profit history museum which documents the tradecraft, history, and contemporary role of espionage. It holds the largest collection of international espionage artifacts on public display.','History Museum', true);
 
 
-CREATE TABLE monuments (
-    Monument_id SERIAL,
-    Name varchar(200) NOT NULL,
-    Description varchar (2000) NOT NULL,
-    Year_built TIMESTAMP NOT NULL,
-    CONSTRAINT PK_monuments PRIMARY KEY (Monument_id)
 );
 
 CREATE TABLE itinerary (

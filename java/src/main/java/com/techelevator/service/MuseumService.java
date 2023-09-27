@@ -1,7 +1,6 @@
 package com.techelevator.service;
 
 import com.techelevator.dao.MuseumDao;
-import com.techelevator.model.Museum;
 
 import java.util.List;
 
