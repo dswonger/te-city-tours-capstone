@@ -20,7 +20,7 @@ public class JdbcAttractionsDao implements AttractionsDao{
 
     @Override
     public List<Attractions> getAllMuseums() {
-        String sql = "SELECT * FROM attractions WHERE type = Museum;";
+        String sql = "SELECT * FROM attractions WHERE type = 'Museum';";
         SqlRowSet results = template.queryForRowSet(sql);
         List <Attractions> allMuseums = new ArrayList<>();
         while (results.next()){
@@ -34,7 +34,7 @@ public class JdbcAttractionsDao implements AttractionsDao{
 
     @Override
     public List<Attractions> getAllMonuments() {
-        String sql = "SELECT * FROM attractions WHERE type = Monument;";
+        String sql = "SELECT * FROM attractions WHERE type = 'Monument';";
         SqlRowSet results = template.queryForRowSet(sql);
         List <Attractions> allMonuments = new ArrayList<>();
         while (results.next()){
