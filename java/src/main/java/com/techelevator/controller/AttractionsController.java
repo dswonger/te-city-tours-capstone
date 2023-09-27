@@ -14,12 +14,12 @@ import java.util.List;
 public class AttractionsController {
   @Autowired
   AttractionsDao dao;
-  @PreAuthorize("hasRole('USER', 'ADMIN')")
+  @PreAuthorize("permitAll")
   @RequestMapping (path="/allMuseums", method = RequestMethod.GET)
     public List<Attractions> getAllMuseums () {
       return dao.getAllMuseums();
   }
-  @PreAuthorize("hasRole('USER', 'ADMIN')")
+  @PreAuthorize("permitAll")
   @RequestMapping (path="/allMonuments", method = RequestMethod.GET)
   public List<Attractions> getAllMonuments () {
     return dao.getAllMonuments();
