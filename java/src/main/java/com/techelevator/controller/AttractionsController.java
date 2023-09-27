@@ -14,26 +14,28 @@ import java.util.List;
 public class AttractionsController {
   @Autowired
   AttractionsDao dao;
+  @PreAuthorize("hasRole('USER', 'ADMIN')")
   @RequestMapping (path="/allMuseums", method = RequestMethod.GET)
     public List<Attractions> getAllMuseums () {
       return dao.getAllMuseums();
   }
+  @PreAuthorize("hasRole('USER', 'ADMIN')")
   @RequestMapping (path="/allMonuments", method = RequestMethod.GET)
   public List<Attractions> getAllMonuments () {
     return dao.getAllMonuments();
   }
-
-@RequestMapping (path = "/addAttraction", method = RequestMethod.POST)
+  @PreAuthorize("hasRole('USER', 'ADMIN')")
+  @RequestMapping (path = "/addAttraction", method = RequestMethod.POST)
   public boolean addAttraction (@RequestBody Attractions attraction) {
    return dao.addAttraction(attraction);
 }
-
-@RequestMapping (path = "/editAttraction", method = RequestMethod.PUT)
+  @PreAuthorize("hasRole('ADMIN')")
+  @RequestMapping (path = "/editAttraction", method = RequestMethod.PUT)
   public boolean editAttraction (@RequestBody Attractions attraction) {
 
     return dao.updateAttraction(attraction); }
-
-  @RequestMapping (path = "/puppy/{id}", method = RequestMethod.DELETE)
+  @PreAuthorize("hasRole('ADMIN')")
+  @RequestMapping (path = "/attractions/{id}", method = RequestMethod.DELETE)
   public int deleteAttraction (@PathVariable int id) {
     return dao.deleteAttraction(id);
   }
