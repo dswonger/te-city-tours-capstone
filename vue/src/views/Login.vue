@@ -68,7 +68,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .form-input-group {
   margin-bottom: 1rem;
 }
@@ -86,6 +86,7 @@ label {
   color: white;
 }
 .form-size {
+  
   width: 550px;
 }
 
@@ -115,7 +116,7 @@ p {
 
 </style>
 
-<style>
+<style scoped>
   .btn {
     padding: 0.8rem 1rem 0.7rem;
     border: 0.2rem solid #5a5a5a;
@@ -165,7 +166,7 @@ p {
     margin-top: 2.5rem;
   }
   
-  .flex-container {
+  #login {
     display: flex;
     justify-content: center;
     height: 705px;

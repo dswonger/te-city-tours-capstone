@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Welcome to Washington DC</h1>
-    <p>If you are seeing this, you are authenticated.</p>
+    
   </div>
 </template>
 
@@ -25,6 +25,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>
