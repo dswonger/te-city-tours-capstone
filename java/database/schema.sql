@@ -20,7 +20,6 @@ CREATE TABLE attractions (
     description varchar (100000) NOT NULL,
     image varchar (100000) NOT NULL,
     rate int,
-    reviews int,
     type varchar (100000) NOT NULL,
 	 CONSTRAINT PK_attractions PRIMARY KEY (id)
 );
