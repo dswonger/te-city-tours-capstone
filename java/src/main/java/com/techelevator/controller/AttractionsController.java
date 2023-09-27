@@ -26,17 +26,5 @@ public class AttractionsController {
     return dao.getAllMonuments();
   }
 
-  @RequestMapping (path="/addMuseums", method = RequestMethod.POST)
-  public Museum addMuseum (Museum newMuseum) {
 
-    return dao.addNewMuseum(newMuseum);
-  }
-@RequestMapping (path = "/updateById", method = RequestMethod.PUT)
-  public boolean updateMuseumById (Museum newMuseum) {
-    return dao.updateMuseum(newMuseum);
-}
-@RequestMapping (path = "/deleteMuseumById", method = RequestMethod.DELETE)
-  public boolean deleteMuseumById (int museumId) {
-    return dao.deleteMuseum(museumId);
-}
 }

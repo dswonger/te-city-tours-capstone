@@ -4,6 +4,7 @@ import com.techelevator.model.Attractions;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,9 @@ public class JdbcAttractionsDao implements AttractionsDao{
 
     private JdbcTemplate template;
 
+    public JdbcAttractionsDao (DataSource source) {
+        template = new JdbcTemplate(source);
+    }
 
 
     @Override
@@ -40,6 +44,23 @@ public class JdbcAttractionsDao implements AttractionsDao{
 
         return allMonuments;
 
+    }
+
+    @Override
+    public Attractions addAttraction() {
+        return null;
+    }
+
+    @Override
+    public Attractions updateAttraction() {
+        return null;
+    }
+
+    @Override
+    public int deleteAttraction(int id) {
+        String sql = "DELETE FROM attractions WHERE id = ?;";
+        int numberOfRows= template.update(sql,id);
+        return numberOfRows;
     }
 
     public Attractions mapRowToAttractions (SqlRowSet results) {
