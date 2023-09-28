@@ -52,4 +52,18 @@ public class ItineraryController {
         int userId = userDao.findIdByUsername(principal.getName());
         return dao.deleteItinerary(id, userId);
     }
+
+    // FOR Attractions AND Itinerary communicate
+
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/itinerary/{itineraryId}/addAttraction/{attractionId}", method = RequestMethod.POST)
+    public void addAttraction(@PathVariable int itineraryId, @PathVariable int attractionId) {
+        dao.addAttraction(itineraryId, attractionId);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/itinerary/{itineraryId}/removeAttraction/{attractionId}", method = RequestMethod.DELETE)
+    public void removeAttraction(@PathVariable int itineraryId, @PathVariable int attractionId) {
+        dao.removeAttraction(itineraryId, attractionId);
+    }
 }

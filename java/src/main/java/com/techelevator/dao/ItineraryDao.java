@@ -14,5 +14,6 @@ public interface ItineraryDao {
     public Itinerary updateItinerary ( Itinerary itinerary, int userId);
     public int deleteItinerary ( int id, int userId);
 
-
+    public void addAttraction (int itineraryId, int attractionId);
+    public void removeAttraction (int itineraryId, int attractionId);
 }

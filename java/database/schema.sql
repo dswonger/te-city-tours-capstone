@@ -109,12 +109,10 @@ CREATE SEQUENCE seq_itinerary_id
 
 CREATE TABLE itinerary (
     itinerary_id SERIAL,
-    location_id int  NOT NULL,
     Starting_point int NOT NULL,
     Date_of_itinerary TIMESTAMP NOT NULL,
     user_id int NOT NULL,
     CONSTRAINT PK_itinerary PRIMARY KEY (itinerary_id),
-    CONSTRAINT FK_itinerary_attractions_id  FOREIGN KEY ( location_id) REFERENCES attractions(id),
     CONSTRAINT FK_itinerary_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 
 );
