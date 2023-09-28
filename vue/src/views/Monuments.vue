@@ -6,7 +6,11 @@
         <div class="monumentCard" v-for="monument in monumentsList" v-bind:key="monument.id">
         <h3>{{monument.name}}</h3> 
         <p>{{monument.description}} </p>
+<<<<<<< HEAD
          <img v-bind:src="'../images/' + monument.image + '.jpg'"/> 
+=======
+        <img src=({{monument.image}})/>
+>>>>>>> main
         <p>Rating: {{monument.rate}}</p>
         <p><input type="checkbox" name="monumentName" value="monumentName" unchecked>Add to Itinerary</p>
         <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
