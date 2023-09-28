@@ -5,13 +5,13 @@ import java.util.List;
 public class Itinerary {
     private int id;
     private int startingPoint;
-    private List<Integer> locations;
+    private List<Attractions> locations;
     private String Date;
     private int userId;
 
     public Itinerary() {}
 
-    public Itinerary(int id, int startingPoint, List<Integer> locations, String date, int userId) {
+    public Itinerary(int id, int startingPoint, List<Attractions> locations, String date, int userId) {
         this.id = id;
         this.startingPoint = startingPoint;
         this.locations = locations;
@@ -35,11 +35,11 @@ public class Itinerary {
         this.startingPoint = startingPoint;
     }
 
-    public List<Integer> getLocations() {
+    public List<Attractions> getLocations() {
         return locations;
     }
 
-    public void setLocations(List<Integer> locations) {
+    public void setLocations(List<Attractions> locations) {
         this.locations = locations;
     }
 
