@@ -24,17 +24,17 @@ public class AttractionsController {
   public List<Attractions> getAllMonuments () {
     return dao.getAllMonuments();
   }
-  @PreAuthorize("hasRole('USER', 'ADMIN')")
+  @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
   @RequestMapping (path = "/addAttraction", method = RequestMethod.POST)
   public boolean addAttraction (@RequestBody Attractions attraction) {
    return dao.addAttraction(attraction);
 }
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping (path = "/editAttraction", method = RequestMethod.PUT)
   public boolean editAttraction (@RequestBody Attractions attraction) {
 
     return dao.updateAttraction(attraction); }
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping (path = "/attractions/{id}", method = RequestMethod.DELETE)
   public int deleteAttraction (@PathVariable int id) {
     return dao.deleteAttraction(id);

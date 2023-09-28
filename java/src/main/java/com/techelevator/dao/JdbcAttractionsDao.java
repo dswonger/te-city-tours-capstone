@@ -51,9 +51,9 @@ public class JdbcAttractionsDao implements AttractionsDao{
     public boolean addAttraction(Attractions newAttraction) {
         String sql = "INSERT INTO attractions (name, address, description, type) VALUES (?, ?, ?, ?);";
 
-       int numberOfRows= template.update(newAttraction.getName(), newAttraction.getAddress(), newAttraction.getDescription(), newAttraction.getType());
-
-       if (numberOfRows ==1) {
+       int numberOfRows = template.update(sql, newAttraction.getName(), newAttraction.getAddress(), newAttraction.getDescription(), newAttraction.getType());
+        System.out.println(numberOfRows);
+       if (numberOfRows == 1) {
            return true;
        } else {
            return false;
@@ -64,9 +64,9 @@ public class JdbcAttractionsDao implements AttractionsDao{
 
     @Override
     public boolean updateAttraction(Attractions updatedAttraction) {
-        String sql = "UPDATE attractions SET name = ?, address = ?, description = ?, type = ?;";
-        int numberOfRows = template.update(updatedAttraction.getName(), updatedAttraction.getAddress(),
-                updatedAttraction.getDescription(), updatedAttraction.getType());
+        String sql = "UPDATE attractions SET name = ?, address = ?, description = ?, type = ? WHERE id = ?;";
+        int numberOfRows = template.update(sql, updatedAttraction.getName(), updatedAttraction.getAddress(),
+                updatedAttraction.getDescription(), updatedAttraction.getType(), updatedAttraction.getId());
 
         if (numberOfRows == 1) {
             return true;

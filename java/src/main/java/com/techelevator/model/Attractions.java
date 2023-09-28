@@ -18,10 +18,11 @@ public class Attractions {
         this.rate = rate;
     }
 
-    public Attractions(int id, String name, String description) {
+    public Attractions(int id, String name, String description, String type) {
         this.name = name;
         this.id =id;
         this.description = description;
+        this.type = type;
 
 
     }

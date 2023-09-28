@@ -18,7 +18,7 @@ CREATE TABLE attractions (
     name varchar(100) NOT NULL,
     address varchar ( 100000) NOT NULL,
     description varchar (100000) NOT NULL,
-    image varchar (100000) NOT NULL,
+    image varchar (100000),
     rate int,
     type varchar (100000) NOT NULL,
 	 CONSTRAINT PK_attractions PRIMARY KEY (id)
