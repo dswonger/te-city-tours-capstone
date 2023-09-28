@@ -22,9 +22,9 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     @Override
-    public List<Itinerary> getAllItineraries() {
-        String sql = "SELECT * FROM itinerary;";
-        SqlRowSet res = template.queryForRowSet(sql);
+    public List<Itinerary> getAllItineraries( int id) {
+        String sql = "SELECT * FROM itinerary WHERE user_id = ?;";
+        SqlRowSet res = template.queryForRowSet(sql,id);
         List <Itinerary> allItineraries = new ArrayList<>();
         while (res.next()){
             Itinerary itinerary = mapToRowsetItinerary(res);
@@ -38,7 +38,7 @@ public class JdbcItineraryDao implements ItineraryDao {
     @Override
     public Itinerary getItineraryById(int id) {
         Itinerary itinerary = null;
-        String sql = "SELECT * FROM itinerary WHERE itinerary = ?;";
+        String sql = "SELECT * FROM itinerary WHERE user_id = ?;";
         SqlRowSet res = template.queryForRowSet(sql, id);
         if(res.next()){
            itinerary = mapToRowsetItinerary(res);
@@ -62,26 +62,38 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     @Override
-    public Itinerary updateItinerary(Itinerary itinerary) {
-        Itinerary editItinerary = null;
-        String sql = "UPDATE itinerary SET location_id = ?, Starting_point = ?, Date_of_itinerary = ?, user_id = ? " +
-                "WHERE itinerary_id =?;";
+    public Itinerary updateItinerary(Itinerary itinerary, int userId) {
+        Itinerary target = getItineraryById(itinerary.getId());
 
-        int numberOfRow = template.update(sql, itinerary.getLocations(),
-                itinerary.getStartingPoint(), itinerary.getDate(), itinerary.getUserId(), itinerary.getId());
-        if (numberOfRow == 0) {
-            throw new DaoException("Zero rows affected, expected at least one");
-        }else{
-            editItinerary = getItineraryById(itinerary.getId());
+        if (userId == target.getUserId()) {
+            Itinerary editItinerary = null;
+            String sql = "UPDATE itinerary SET location_id = ?, Starting_point = ?, Date_of_itinerary = ? " +
+                    "WHERE itinerary_id =?;";
+
+            int numberOfRow = template.update(sql, itinerary.getLocations(),
+                    itinerary.getStartingPoint(), itinerary.getDate(), itinerary.getId());
+            if (numberOfRow == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            }else{
+                editItinerary = getItineraryById(itinerary.getId());
+            }
+            return editItinerary;
+        } else {
+            throw new DaoException("Unauthorized to edit this object");
         }
-        return editItinerary;
     }
 
     @Override
-    public int deleteItinerary(int id) {
-        String sql = "DELETE FROM itinerary WHERE id = ?;";
-        int numberOfRows= template.update(sql,id);
-        return numberOfRows;
+    public int deleteItinerary(int id, int userId) {
+        Itinerary target = getItineraryById(id);
+
+        if (userId == target.getUserId()) {
+            String sql = "DELETE FROM itinerary WHERE id = ?;";
+            int numberOfRows= template.update(sql,id);
+            return numberOfRows;
+        } else {
+            throw new DaoException("Unauthorized to edit this object");
+        }
     }
 
     private Itinerary mapToRowsetItinerary(SqlRowSet res) {
