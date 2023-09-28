@@ -4,8 +4,9 @@
     <h1>Museums HomePage</h1>
     
     <div class="museumCard" v-for="museum in museumsList" v-bind:key="museum.id">
-        <p>{{museum.name}}</p> 
+        <h3>{{museum.name}}</h3> 
         <p>{{museum.description}}</p>
+        <img src="../museumImages/national-portrait-gallery.jpg"/> 
         <p>Rating: {{museum.rate}}</p>
         <p><input type="checkbox" name="museumName" value="museumName" unchecked>Add to Itinerary</p>
         <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
@@ -41,6 +42,10 @@ div.museumCard {
     border-radius: 6px;
     padding: 1rem;
     margin: 10px;
+    font: 12pt sans-serif;
     
+}
+img {
+  height: 100px;
 }
 </style>
