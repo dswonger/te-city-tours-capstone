@@ -24,4 +24,5 @@ public class UserController {
     public List<Itinerary> getAllItineraries() {
         return dao.getAllItineraries();
     }
+
 }
