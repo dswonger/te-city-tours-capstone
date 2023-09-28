@@ -2,11 +2,15 @@
 <form v-on:submit.prevent="createItinerary">
   <div class="monuments">
     <h1>Monuments HomePage</h1>
-    
+   
         <div class="monumentCard" v-for="monument in monumentsList" v-bind:key="monument.id">
-        <p>{{monument.name}}</p> 
+        <h3>{{monument.name}}</h3> 
         <p>{{monument.description}} </p>
+<<<<<<< HEAD
+         <img v-bind:src="'../images/' + monument.image + '.jpg'"/> 
+=======
         <img src=({{monument.image}})/>
+>>>>>>> main
         <p>Rating: {{monument.rate}}</p>
         <p><input type="checkbox" name="monumentName" value="monumentName" unchecked>Add to Itinerary</p>
         <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
@@ -42,6 +46,10 @@ div.monumentCard {
     border-radius: 6px;
     padding: 1rem;
     margin: 10px;
+    font: 12pt sans-serif;
     
+}
+img {
+  height: 100px
 }
 </style>
