@@ -1,5 +1,8 @@
 <template>
+<div>
   <itinerary-map></itinerary-map>
+
+  </div>
 </template>
 
 <script>
