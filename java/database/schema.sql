@@ -29,25 +29,25 @@ CREATE TABLE attractions (
 INSERT INTO attractions (name, address, description, image, type)
 VALUES ('National Gallery of Art ', 'Constitution Ave. NW, Washington, DC 20565 ',
 'The National Gallery of Art, and its attached Sculpture Garden, is a national art museum in Washington, D.C., United States, located on the National Mall, between 3rd and 9th Streets, at Constitution Avenue NW.',
-'src/main/resources/images/museums/National-Gallery-of-Art.jpg ', 'Museum'),
+'National-Gallery-of-Art.jpg ', 'Museum'),
 
 ('Smithsonian National Museum of Natural History', '10th St. & Constitution Ave. NW, Washington, DC 20560', 'The National Museum of Natural History is a natural history museum administered by the Smithsonian Institution, located on the National Mall in Washington, D.C., United States. It has free admission and is open 364 days a year. In 2022, with 3.9 million visitors, it was the most-visited museum in the United States.',
- 'src/main/resources/images/museums/Smithsonian-Natural-History.jpg', 'Museum'),
+ 'Smithsonian-Natural-History.jpg', 'Museum'),
 
  ('National Air and Space Museum', '600 Independence Ave SW, Washington, DC 20560', 'The National Air and Space Museum of the Smithsonian Institution, is a museum in Washington, D.C., in the United States dedicated to human flight and space exploration. Established in 1946 as the National Air Museum, its main building opened on the National Mall near L''Enfant Plaza in 1976.',
- 'src/main/resources/images/museums/National-Air-And-Space.jpg', 'Museum'),
+ 'National-Air-And-Space.jpg', 'Museum'),
 
 ('United States Holocaust Memorial Museum', '100 Raoul Wallenberg Pl SW, Washington, DC 20024', 'The United States Holocaust Memorial Museum is the United States'' official memorial to the Holocaust. Adjacent to the National Mall in Washington, D.C., the USHMM provides for the documentation, study, and interpretation of Holocaust history.',
- 'src/main/resources/images/museums/Holocaust-Museum.jpg', 'Museum'),
+ 'Holocaust-Museum.jpg', 'Museum'),
 
 ('National Museum of African American History and Culture', '1400 Constitution Ave. NW, Washington, DC 20560', 'The National Museum of African American History and Culture, colloquially known as the Blacksonian, is a Smithsonian Institution museum located on the National Mall in Washington, D.C., in the United States. It was established in 2003 and opened its permanent home in 2016 with a ceremony led by President Barack Obama.',
- 'src/main/resources/images/museums/National_Museum_of_African_American_History_and_Culture.jpg', 'Museum'),
+ 'National_Museum_of_African_American_History_and_Culture.jpg', 'Museum'),
 
 ('National Portrait Gallery', '8th St NW & G St NW, Washington, DC 20001', 'The National Portrait Gallery is a historic art museum between 7th, 9th, F, and G Streets NW in Washington, D.C., in the United States. Founded in 1962 and opened to the public in 1968, it is part of the Smithsonian Institution. Its collections focus on images of famous Americans.',
-'src/main/resources/images/museums/national-portrait-gallery.jpg', 'Museum'),
+'national-portrait-gallery.jpg', 'Museum'),
 
 ('The National Archives Museum', '701 Constitution Ave. NW, Washington, DC 20408', 'The museum wing of the National Archives, the National Archives Museum is the home of the Declaration of Independence, Constitution, and Bill of Rights.',
- 'src/main/resources/images/museums/National-Archives.jpg', 'Museum'),
+ 'National-Archives.jpg', 'Museum'),
 
 ('International Spy Museum', ' 700 L''Enfant Plaza SW, Washington, DC 20024', 'The International Spy Museum is an independent non-profit history museum which documents the tradecraft, history, and contemporary role of espionage. It holds the largest collection of international espionage artifacts on public display.',
  'src/main/resources/images/museums/International-Spy-Museum.jpg', 'Museum'),
