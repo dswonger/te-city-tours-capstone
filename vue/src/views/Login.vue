@@ -37,7 +37,7 @@
 </template>
 
 
-<script>
+<script scoped>
 import authService from "../services/AuthService";
 
 export default {
@@ -87,6 +87,10 @@ form {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the form */
 }
 
+<<<<<<< HEAD
+=======
+<style>
+>>>>>>> main
 #login {
   display: flex;
   justify-content: center;
