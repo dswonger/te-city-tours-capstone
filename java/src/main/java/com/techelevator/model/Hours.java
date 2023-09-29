@@ -4,9 +4,10 @@ public class Hours {
 
 
 
+    private String attractionName;
 
 
-        private int attractionId;
+    private int attractionId;
         private String mondayOpen;
         private String mondayClose;
         private String tuesdayOpen;
@@ -142,5 +143,14 @@ public class Hours {
         public void setSundayClose(String sundayClose) {
             this.sundayClose = sundayClose;
         }
+
+    public String getAttractionName() {
+        return attractionName;
+    }
+
+    public void setAttractionName(String attractionName) {
+        this.attractionName = attractionName;
+    }
+
 
 }
