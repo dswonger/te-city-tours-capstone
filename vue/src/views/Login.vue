@@ -1,8 +1,12 @@
 <template>
   <div id="login">
     <div class="center">
+    <div class="background">
+     <div class="container">
+      <div class="content">
     <form class="form-size" @submit.prevent="login">
-      <h1>Welcome to City Tours  Washington DC</h1>
+      <h1>Welcome to City Tours </h1>
+      <h1> Washington DC</h1>
       <h1 >Please Sign In</h1>
     
       <div role="alert" v-if="invalidCredentials">
@@ -26,7 +30,10 @@
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
     </div>
-  </div>
+     </div>
+    </div>
+    </div>
+    </div>
 </template>
 
 
@@ -68,38 +75,41 @@ export default {
 };
 </script>
 
-<style>
-.form-input-group {
-  margin-bottom: 1rem;
-}
-label {
-  margin-right: 0.5rem;
-}
-</style>
-
-
 <style scoped>
+form {
+  background-image: url('/src/images/capital2.jpg');
+  padding: 20px;
+  border-radius: 8px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the form */
+}
+
 #login {
   display: flex;
   justify-content: center;
   margin: auto;
   color: white;
 }
+
+.form-input-group {
+  margin-bottom: 1rem;
+}
+label {
+  margin-right: 0.5rem;
+}
+
 .form-size {
-  
-  width: 550px;
+  width: 700px;
+  height: 500px;
 }
 
 .center {
   display: flex;
   justify-content: center;
-}
-
-.my-component {
-  background-color: #ffffff;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
+} 
 
 .centered-text {
   text-align: center;
@@ -109,76 +119,49 @@ h1 {
   color: white;
 }
 
-p {
-  font-size: 16px;
+.container {
+  height: 100vh; /* Make the container take up the full height of the viewport */
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: flex-end; /* Align the content to the bottom */
 }
 
+.content {
+  text-align: center; /* Center the text within the content div */
+}
 
 </style>
 
 <style scoped>
-  .btn {
-    padding: 0.8rem 1rem 0.7rem;
-    border: 0.2rem solid #5a5a5a;
-    cursor: pointer;
-    text-transform: capitalize;
-  }
-  
-  .btn-group {
-    display: flex;
-    justify-content: space-between;
-  }
-  .btn-group > * {
-    flex: 1 1 auto;
-  }
-  .btn-group > * + * {
-    margin-left: 0.8rem;
-  }
-  .label-wrapper {
-    margin: 0;
-    flex: 0 0 100%;
-    text-align: center;
-  }
-  [class*="__lg"] {
-    display: inline-block;
-    width: 100%;
-    font-size: 1.9rem;
-  }
-  
-  .visually-hidden {
-    position: absolute;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap;
-  }
-  [class*="stack"] > * {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  .stack-small > * + * {
-    margin-top: 1.25rem;
-  }
-  .stack-large > * + * {
-    margin-top: 2.5rem;
-  }
-  
+
+  /* div {
+  background-color: #473DFF;
+  }  */
+
   #login {
     display: flex;
     justify-content: center;
-    height: 705px;
+    height: 1000px;
     width: 564px;
-    background-image: url('/src/images/capital2.jpg');
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: auto;
+    
   }
 
-  #app {
+  .content {
+  position: relative;
+  z-index: 1; /* Place it above the background */
+  }
+
+  .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background-color:  #473DFF; 
+  z-index: -1; 
+  }
+
+  /* #app {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -187,24 +170,9 @@ p {
     box-shadow:
       0 2px 4px 0 rgba(0, 0, 0, 0.2),
       0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
-  }
-
-  /* #app > * {
-    max-width: 50rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #app > form {
-    max-width: 100%;
   } */
-  #app h1 {
-    display: block;
-    min-width: 75%;
-    width: 75%;
-    text-align: center;
-    margin: 0;
-    margin-bottom: 1rem;
-  }
+
+
 </style>
 
 
