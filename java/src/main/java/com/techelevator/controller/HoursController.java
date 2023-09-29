@@ -13,17 +13,10 @@ public class HoursController {
     @Autowired
     HoursDao dao;
 
-    @RequestMapping (path= "/getAllMuseumHours", method = RequestMethod.GET)
-    public List<Hours> getAllMuseumHours () {
-       return dao.getAllMuseumHours();
-    }
-
-    @RequestMapping (path = "/getAllMonumentHours", method = RequestMethod.GET)
-    public List <Hours> getAllMonumentHours () {
-        return dao.getAllMonumentHours();
-    }
-    @RequestMapping(path = "/hours/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{id}/hours", method = RequestMethod.GET)
     public Hours getHoursById (@PathVariable int id) {
         return dao.getHoursByAttractionId(id);
-}
+    }
+
+
 }

@@ -8,7 +8,9 @@ public interface HoursDao {
 
     public Hours getHoursByAttractionId (int id);
 
-    public List<Hours> getAllMuseumHours ();
+    public boolean addHours (Hours addHours);
 
-    public List <Hours> getAllMonumentHours();
+    public boolean updateHours (String day, Hours newHours);
+    public int deleteHours (int id);
+
 }

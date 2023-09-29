@@ -35,56 +35,21 @@ public class JdbcHoursDao implements HoursDao {
 
     }
 
+
+
     @Override
-    public List<Hours> getAllMuseumHours() {
-        List <Hours> allMuseumHours = new ArrayList<>();
-
-      try {
-          String sql = "SELECT attraction_id, mon_open, tues_open, wed_open, thurs_open, fri_open, sat_open, sun_open, " +
-                  "mon_close, tues_close, wed_close, thurs_close, fri_close, sat_close, sun_close FROM hour_day JOIN attractions ON attractions.id = hour_day.attraction_id " +
-                  "WHERE type = 'Museum';";
-
-          SqlRowSet results = template.queryForRowSet(sql);
-
-          while (results.next()) {
-              Hours eachAttractionHours = mapRowToHours(results);
-
-              allMuseumHours.add(eachAttractionHours);
-          }
-
-      }catch (CannotGetJdbcConnectionException e) {
-
-          throw new DaoException("Cannot connect to server or database", e);
-
-      }
-
-        return allMuseumHours;
+    public boolean addHours(Hours addHours) {
+        return false;
     }
 
     @Override
-    public List<Hours> getAllMonumentHours() {
-        List <Hours> allMonumentHours = new ArrayList<>();
+    public boolean updateHours(String day, Hours newHours) {
+        return false;
+    }
 
-        try {
-            String sql = "SELECT attraction_id, mon_open, tues_open, wed_open, thurs_open, fri_open, sat_open, sun_open, " +
-                    "mon_close, tues_close, wed_close, thurs_close, fri_close, sat_close, sun_close FROM hour_day JOIN attractions ON attractions.id = hour_day.attraction_id " +
-                    "WHERE type = 'Monument';";
-
-            SqlRowSet results = template.queryForRowSet(sql);
-
-            while (results.next()) {
-                Hours eachAttractionHours = mapRowToHours(results);
-
-                allMonumentHours.add(eachAttractionHours);
-            }
-
-        }catch (CannotGetJdbcConnectionException e) {
-
-            throw new DaoException("Cannot connect to server or database", e);
-
-        }
-
-        return allMonumentHours;
+    @Override
+    public int deleteHours(int id) {
+        return 0;
     }
 
 
