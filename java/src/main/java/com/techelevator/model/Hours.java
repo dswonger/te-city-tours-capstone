@@ -4,10 +4,8 @@ public class Hours {
 
 
 
-    private String attractionName;
-
-
-    private int attractionId;
+        private String attractionName;
+        private int attractionId;
         private String mondayOpen;
         private String mondayClose;
         private String tuesdayOpen;

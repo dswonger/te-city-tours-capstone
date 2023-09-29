@@ -10,7 +10,7 @@ public interface HoursDao {
 
     public boolean addHours (Hours addHours);
 
-    public boolean updateHours (String day, Hours newHours);
+    public boolean updateHours (String day, int id, Hours newHours);
     public int deleteHours (int id);
 
 }
