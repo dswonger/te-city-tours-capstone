@@ -1,18 +1,21 @@
 <template>
 <div>
   <itinerary-map></itinerary-map>
-
+  <create-itinerary></create-itinerary>
+{{newItinerary}}
   </div>
 </template>
 
 <script>
+import CreateItinerary from '../components/CreateItinerary.vue'
 import ItineraryMap from '../components/ItineraryMap.vue'
 
 
 export default {
   name: 'Map',
   components: {
-    ItineraryMap
+    ItineraryMap,
+    CreateItinerary,
     
   }
 }
