@@ -1,5 +1,5 @@
 <template>
-<form v-on:submit.prevent="createItinerary">
+<form v-on:submit.prevent="submitMuseums()">
   <div class="monuments">
     <h1>Museums HomePage</h1>
     
@@ -11,7 +11,7 @@
         <p><input type="checkbox" name="museumName" value="museumName" unchecked>Add to Itinerary</p>
         <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
         </div>
-        <button type="submit">Create Itinerary!</button>
+        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
   </div>
   </form>
 </template>
@@ -32,6 +32,25 @@ export default {
         this.museumsList = response.data;
       }
     );
+  },
+    methods: {
+    submitMuseums() {
+      service.addItinerary(this.museum).then(
+        (response) => {
+          if (response.status === 200) {
+            this.$router.push(`/itineraryPage`);
+          }
+        }
+      ).catch(
+        (error) => {
+          if(error.response) {
+            window.alert('Bad Request');
+          } else if(error.request) {
+            window.alert('Could not reach service');
+          }
+        }
+      );
+    }
   }
 };
 </script>

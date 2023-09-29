@@ -28,6 +28,8 @@ public class JdbcItineraryDao implements ItineraryDao {
         List <Itinerary> allItineraries = new ArrayList<>();
         while (res.next()){
             Itinerary itinerary = mapToRowsetItinerary(res);
+            // get list of attractions with itinerary Id
+            itinerary.setLocations(getAttractions(itinerary.getId()));
 
             allItineraries.add(itinerary);
         }
@@ -42,9 +44,23 @@ public class JdbcItineraryDao implements ItineraryDao {
         SqlRowSet res = template.queryForRowSet(sql, id);
         if(res.next()){
            itinerary = mapToRowsetItinerary(res);
-
+           // get list of attractions with itinerary Id
+           itinerary.setLocations(getAttractions(itinerary.getId()));
         }
         return itinerary;
+    }
+
+    // Get list of attractions' id associates with target itinerary
+    private List<Attractions> getAttractions(int itineraryId) {
+        String sql = "SELECT * FROM attractions a JOIN itinerary_attraction b ON a.id = b.attraction_id  WHERE b.itinerary_id = ?";
+        SqlRowSet res = template.queryForRowSet(sql, itineraryId);
+
+        List<Attractions> attractionList = new ArrayList<>();
+        while (res.next()) {
+            attractionList.add(mapToRowsetAttractions(res));
+        }
+
+        return attractionList;
     }
 
     @Override
@@ -103,13 +119,40 @@ public class JdbcItineraryDao implements ItineraryDao {
         itinerary.setDate(res.getString("data"));
         itinerary.setUserId(res.getInt("user_id"));
 
-        List<Integer> locationIds = new ArrayList<>();
-        while (res.next()) {
-            int locationId = res.getInt("location_id"); // Retrieve location_id from ResultSet
-            locationIds.add(locationId);
-        }
-        itinerary.setLocations(locationIds);
-
         return itinerary;
     }
+
+    private Attractions mapToRowsetAttractions(SqlRowSet res) {
+        Attractions att = new Attractions();
+
+        att.setAddress(res.getString("address"));
+        att.setDescription(res.getString("description"));
+        att.setId(res.getInt("id"));
+        att.setImage(res.getString("image"));
+        att.setName(res.getString("name"));
+        att.setRate(res.getInt("rate"));
+        att.setType(res.getString("type"));
+
+        return att;
+    }
+
+    @Override
+    public void addAttraction (int itineraryId, int attractionId){
+        String sql = "INSERT INTO itinerary_attraction (attraction_id,  itinerary_id) VALUES (?,?);";
+        SqlRowSet res = template.queryForRowSet(sql,attractionId, itineraryId);
+
+        if (!res.next()) {
+            throw new DaoException("Failed to add Attraction to Itinerary");
+        }
+    };
+
+    @Override
+    public void removeAttraction (int itineraryId, int attractionId){
+        String sql = "DELETE FROM itinerary_attraction WHERE attraction_id = ? AND itinerary_id =?;";
+        SqlRowSet res = template.queryForRowSet(sql,attractionId, itineraryId);
+
+        if (!res.next()) {
+            throw new DaoException("Failed to add Attraction to Itinerary");
+        }
+    };
 }
