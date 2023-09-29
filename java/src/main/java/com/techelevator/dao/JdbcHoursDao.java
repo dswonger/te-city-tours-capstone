@@ -21,9 +21,9 @@ public class JdbcHoursDao implements HoursDao {
     public Hours getHoursByAttractionId(int id) {
         Hours attractionHours = new Hours();
 
-        String sql = "SELECT attraction_id, mon_open, tues_open, wed_open, thurs_open, fri_open, sat_open, sun_open, " +
-                "mon_close, tues_close, wed_close, thurs_close, fri_close, sat_close, sun_close FROM hour_day " +
-                "WHERE attraction_id = ?;";
+        String sql = "SELECT attractions.name,  mon_open, tues_open, wed_open, thurs_open, fri_open, sat_open, sun_open," +
+                " mon_close, tues_close, wed_close, thurs_close, fri_close, sat_close, sun_close FROM hour_day JOIN attractions ON attractions.id = hour_day.attraction_id" +
+                "WHERE attraction_id = ?";
 
         SqlRowSet results = template.queryForRowSet(sql,id);
 
