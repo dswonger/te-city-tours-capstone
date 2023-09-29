@@ -1,16 +1,17 @@
 <template>
-<form v-on:submit.prevent="createItinerary">
+<form v-on:submit.prevent="submitMuseums()">
   <div class="monuments">
     <h1>Museums HomePage</h1>
     
     <div class="museumCard" v-for="museum in museumsList" v-bind:key="museum.id">
-        <p>{{museum.name}}</p> 
+        <h3>{{museum.name}}</h3> 
         <p>{{museum.description}}</p>
+        <img v-bind:src=" museum.image"/> 
         <p>Rating: {{museum.rate}}</p>
         <p><input type="checkbox" name="museumName" value="museumName" unchecked>Add to Itinerary</p>
         <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
         </div>
-        <button type="submit">Create Itinerary!</button>
+        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
   </div>
   </form>
 </template>
@@ -31,6 +32,25 @@ export default {
         this.museumsList = response.data;
       }
     );
+  },
+    methods: {
+    submitMuseums() {
+      service.addItinerary(this.museum).then(
+        (response) => {
+          if (response.status === 200) {
+            this.$router.push(`/itineraryPage`);
+          }
+        }
+      ).catch(
+        (error) => {
+          if(error.response) {
+            window.alert('Bad Request');
+          } else if(error.request) {
+            window.alert('Could not reach service');
+          }
+        }
+      );
+    }
   }
 };
 </script>
@@ -41,6 +61,10 @@ div.museumCard {
     border-radius: 6px;
     padding: 1rem;
     margin: 10px;
+    font: 12pt sans-serif;
     
+}
+img {
+  height: 100px;
 }
 </style>

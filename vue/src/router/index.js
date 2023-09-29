@@ -8,6 +8,7 @@ import store from '../store/index'
 import Monuments from '../views/Monuments.vue'
 import Museums from '../views/Museums.vue'
 import ItineraryPage from '../views/ItineraryPage.vue'
+import AddReview from '../views/AddReview.vue'
 
 Vue.use(Router)
 
@@ -29,7 +30,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -45,7 +46,7 @@ const router = new Router({
       name: "logout",
       component: Logout,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -61,7 +62,7 @@ const router = new Router({
       name: "monuments",
       component: Monuments,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -69,13 +70,21 @@ const router = new Router({
       name: "museums",
       component: Museums,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
       path: "/itineraryPage",
       name: "map",
       component: ItineraryPage,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/addReview",
+      name: "review",
+      component: AddReview,
       meta: {
         requiresAuth: true
       }

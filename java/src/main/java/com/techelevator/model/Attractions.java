@@ -6,16 +6,23 @@ public class Attractions {
     private int id;
     private String address;
     private String image;
-    private int reviews;
+    private int rate;
     private String type;
     private String description;
 
+    public int getRate() {
+        return rate;
+    }
 
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
 
-    public Attractions(int id, String name, String description) {
+    public Attractions(int id, String name, String description, String type) {
         this.name = name;
         this.id =id;
         this.description = description;
+        this.type = type;
 
 
     }
@@ -36,13 +43,8 @@ public class Attractions {
         this.image = image;
     }
 
-    public int getReviews() {
-        return reviews;
-    }
 
-    public void setReviews(int reviews) {
-        this.reviews = reviews;
-    }
+
 
     public String getType() {
         return type;

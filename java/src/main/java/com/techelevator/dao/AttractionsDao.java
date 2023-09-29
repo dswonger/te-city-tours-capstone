@@ -9,8 +9,8 @@ public interface AttractionsDao {
     public List<Attractions> getAllMuseums ();
     public List<Attractions> getAllMonuments ();
 
-    public Attractions addAttraction ();
-    public Attractions updateAttraction();
+    public boolean addAttraction (Attractions newAttraction);
+    public boolean updateAttraction(Attractions updatedAttraction);
     public int deleteAttraction(int id);
 
 }
