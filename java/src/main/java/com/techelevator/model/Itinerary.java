@@ -1,23 +1,17 @@
 package com.techelevator.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Itinerary {
     private int id;
     private int startingPoint;
     private List<Attractions> locations;
-    private String Date;
+    private Date date;
     private int userId;
+    private String name;
 
     public Itinerary() {}
-
-    public Itinerary(int id, int startingPoint, List<Attractions> locations, String date, int userId) {
-        this.id = id;
-        this.startingPoint = startingPoint;
-        this.locations = locations;
-        Date = date;
-        this.userId = userId;
-    }
 
     public int getId() {
         return id;
@@ -43,12 +37,12 @@ public class Itinerary {
         this.locations = locations;
     }
 
-    public String getDate() {
-        return Date;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getUserId() {
@@ -57,5 +51,13 @@ public class Itinerary {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
