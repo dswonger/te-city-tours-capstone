@@ -1,17 +1,23 @@
 <template>
-<form v-on:submit.prevent="createItinerary">
+<form v-on:submit.prevent="createItinerary()">
   <div class="monuments">
     <h1>Museums HomePage</h1>
     
-    <div class="museumCard" v-for="museum in museumsList" v-bind:key="museum.id">
+    <div class="museumCard" 
+    v-for="museum in museumsList" 
+    v-bind:key="museum.id"
+    >
         <h3>{{museum.name}}</h3> 
         <p>{{museum.description}}</p>
         <img v-bind:src=" museum.image"/> 
         <p>Rating: {{museum.rate}}</p>
-        <p><input type="checkbox" name="museumName" value="museumName" unchecked>Add to Itinerary</p>
-        <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
+
+        <div><input type="checkbox" name="museumName" value="museumId" 
+        unchecked @change="filterMuseums(museum.id)">Add to Itinerary</div>
+       
         </div>
-        <button type="submit">Create Itinerary!</button>
+        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
+      {{filteredList}}
   </div>
   </form>
 </template>
@@ -23,7 +29,9 @@ export default {
   name: "museums",
   data() {
     return {
-      museumsList : []
+      museumsList : [],
+      filteredList: [],
+      addIfChecked: false
     }
   },
   created() {
@@ -32,6 +40,45 @@ export default {
         this.museumsList = response.data;
       }
     );
+  },
+    methods: {
+      filterMuseums(museumId) {
+        this.filteredList.push(museumId)
+      },
+      createItinerary() {
+      service.createItinerary(this.filteredList).then(
+        (response) => {
+          if (response.status === 200) {
+            this.$router.push(`/itineraryPage`);
+          }
+        }
+      ).catch(
+        (error) => {
+          if(error.response) {
+            window.alert('Bad Request');
+          } else if(error.request) {
+            window.alert('Could not reach service');
+          }
+        }
+      );
+    }
+    // submitMuseums() {
+    //   service.createItinerary(this.museum).then(
+    //     (response) => {
+    //       if (response.status === 200) {
+    //         this.$router.push(`/itineraryPage`);
+    //       }
+    //     }
+    //   ).catch(
+    //     (error) => {
+    //       if(error.response) {
+    //         window.alert('Bad Request');
+    //       } else if(error.request) {
+    //         window.alert('Could not reach service');
+    //       }
+    //     }
+    //   );
+    // }
   }
 };
 </script>

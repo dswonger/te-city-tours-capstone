@@ -26,11 +26,11 @@ export default {
         return axios.delete(`/Museum/${id}`);
     },
     // these need to be updated with the backend endpoints
-    // createItinerary(itinerary) {
-    //     return axios.post(`/addItinerary`, itinerary).
-    //     this.$router.push(`/itineraryPage`);
-    // },
-    // getItinerary(id) {
-    //     return axios.get(`/itinerary/${id}`)
-    // }
+     createItinerary() {
+         return axios.post(`/itinerary/create`);
+         
+     },
+     getItinerary(id) {
+         return axios.get(`/itinerary/${id}`)
+     }
 }

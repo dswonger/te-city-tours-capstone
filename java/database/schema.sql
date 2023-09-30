@@ -96,9 +96,20 @@ VALUES ('National Gallery of Art ', 'Constitution Ave. NW, Washington, DC 20565 
 
 CREATE TABLE hour_day(
     attraction_id int NOT NULL,
-    operation_day varchar (20) NOT NUll,
-    operation_hour_open TIME NOT NULL,
-    operation_hour_closed  TIME NOT NULL,
+    mon_open varchar (100) NOT NUll,
+    mon_close varchar (100) NOT NUll,
+    tues_open varchar (100) NOT NUll,
+    tues_close varchar (100) NOT NUll,
+    wed_open varchar (100) NOT NUll,
+    wed_close varchar (100) NOT NUll,
+    thurs_open varchar (100) NOT NUll,
+    thurs_close varchar (100) NOT NUll,
+    fri_open varchar (100) NOT NUll,
+    fri_close varchar (100) NOT NUll,
+    sat_open varchar (100) NOT NUll,
+    sat_close varchar (100) NOT NUll,
+    sun_open varchar (100) NOT NUll,
+    sun_close varchar (100) NOT NUll,
     CONSTRAINT FK_hour_day_attractions_id  FOREIGN KEY ( attraction_id) REFERENCES attractions(id)
 );
 
@@ -140,5 +151,89 @@ VALUES (1,'As I love arts, I really enjoyed this visit. It has two wings and bot
 (3,'Lots to see!! Loved the Wright Brothers exhibit and the space experience. Even with a portion of the museum closed for renovation, still plenty to take in and enjoy! Highly recommended!!'),
 (3,'Very informative- lots of updates from last visit. Lots of good gift options. Appropriate for all ages.');
 
+INSERT INTO hour_day (attraction_id, mon_open, tues_open, wed_open, thurs_open, fri_open, sat_open, sun_open, mon_close, tues_close, wed_close, thurs_close, fri_close, sat_close, sun_close )
+VALUES
+(1,
+'10:00 AM','10:00 AM','10:00 AM','10:00 AM','10:00 AM','10:00 AM','10:00 AM',
+'5:00 PM', '5:00 PM','5:00 PM','5:00 PM','5:00 PM','5:00 PM','5:00 PM' ),
+
+(2,
+'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',
+'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM'),
+
+(3,
+'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',
+'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM'),
+
+(4,
+'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',
+'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM'),
+
+(5,
+'12:00 PM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',
+'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM'),
+
+(6,
+'11:30 AM','11:30 AM',	'11:30 AM',	'11:30 AM',	'11:30 AM',	'11:30 AM',	'11:30 AM',
+'7:00 PM',	'7:00 PM', '7:00 PM',	'7:00 PM',	'7:00 PM',	'7:00 PM',	'7:00 PM' ),
+
+
+(7,
+'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',
+'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM',	'5:30 PM' ),
+
+
+(8,
+'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'10:00 AM',	'9:00 AM',	'9:00 AM',
+'6:00 PM',	'6:00 PM',	'6:00 PM',	'6:00 PM',	'6:00 PM',	'7:00 PM',	'6:00 PM'),
+
+
+(9,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS'),
+
+
+(10,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS'),
+
+(11,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS'),
+
+
+(12,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS'),
+
+
+(13,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS'),
+
+
+(14,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS'),
+
+
+(15,
+'8:00 AM', '8:00 AM', '8:00 AM', '8:00 AM', '8:00 AM', '8:00 AM', '8:00 AM',
+'5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM'),
+
+
+(16,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS'),
+
+
+(17,
+'9:00 AM', '9:00 AM', '9:00 AM', '9:00 AM', '9:00 AM', '9:00 AM', '9:00 AM',
+'5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM', '5:00 PM'),
+
+
+(18,
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS',
+'OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS','OPEN 24 HOURS');
 
 COMMIT TRANSACTION;
