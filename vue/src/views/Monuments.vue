@@ -17,6 +17,7 @@ v-on:submit.prevent="createItinerary()">
          unchecked @change="filterMonuments( monument.id )">Add to Itinerary</div>
         
         </div>
+         <div> <input type="date" name="itineraryDate" id="itineraryDate">Choose Date</div>
         <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
       {{filteredList}}
   </div>
@@ -50,8 +51,8 @@ export default {
     //     return this.filteredList
     //   }
     // },
-    filterMonuments(monumentId) {
-      this.filteredList.push(monumentId)
+    filterMonuments(monumentId, itineraryDate, userId) {
+      this.filteredList.push(monumentId, itineraryDate, userId)
     },
     createItinerary() {
       service.createItinerary(this.filteredList).then(

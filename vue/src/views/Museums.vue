@@ -16,6 +16,7 @@
         unchecked @change="filterMuseums(museum.id)">Add to Itinerary</div>
        
         </div>
+         <div> <input type="date" name="itineraryDate" id="itineraryDate">Choose Date</div>
         <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
       {{filteredList}}
   </div>
@@ -42,8 +43,8 @@ export default {
     );
   },
     methods: {
-      filterMuseums(museumId) {
-        this.filteredList.push(museumId)
+      filterMuseums(museumId, itineraryDate) {
+        this.filteredList.push(museumId, itineraryDate)
       },
       createItinerary() {
       service.createItinerary(this.filteredList).then(
