@@ -1,6 +1,8 @@
 <template>
 <form v-on:submit.prevent="submitMonuments()">
   <div class="monuments">
+  <div class="background">
+
     <h1>Monuments HomePage</h1>
    
         <div class="monumentCard" v-for="monument in monumentsList" v-bind:key="monument.id">
@@ -14,6 +16,7 @@
         <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
         </div>
         <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
+  </div>
   </div>
   </form>
 </template>
@@ -69,4 +72,16 @@ div.monumentCard {
 img {
   height: 100px
 }
+
+.background {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 200%;
+background-color:  #ff0000; 
+z-index: -1;  
+}
+
+
 </style>

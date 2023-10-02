@@ -79,18 +79,12 @@ export default {
 form {
   background-image: url('/src/images/capital2.jpg');
   padding: 20px;
-  border-radius: 8px;
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   margin: auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the form */
 }
 
-<<<<<<< HEAD
-=======
 <style>
->>>>>>> main
 #login {
   display: flex;
   justify-content: center;
@@ -145,7 +139,7 @@ h1 {
   #login {
     display: flex;
     justify-content: center;
-    height: 1000px;
+    height: 500px;
     width: 564px;
     
   }
