@@ -4,6 +4,8 @@ import com.techelevator.dao.ItineraryDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Attractions;
 import com.techelevator.model.Itinerary;
+import com.techelevator.model.ItineraryDto.CreateItineraryDto;
+import com.techelevator.model.ItineraryDto.UpdateItineraryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -31,18 +33,20 @@ public class ItineraryController {
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(path = "/itinerary/{id}", method = RequestMethod.GET)
-    public Itinerary getItineraryById(@PathVariable int id) {
-        return dao.getItineraryById(id);
+    public Itinerary getItineraryById(@PathVariable int id, Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return dao.getItineraryById(id, userId);
     }
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(path = "/itinerary/create", method = RequestMethod.POST)
-    public Itinerary createItinerary( @Valid @RequestBody Itinerary itinerary) {
-        return dao.createItinerary(itinerary);
+    public Itinerary createItinerary( @Valid @RequestBody CreateItineraryDto itinerary, Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return dao.createItinerary(itinerary, userId);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(path = "/itinerary/edit", method = RequestMethod.PUT)
-    public Itinerary editItinerary(@Valid @RequestBody Itinerary itinerary, Principal principal) {
+    public Itinerary editItinerary(@Valid @RequestBody UpdateItineraryDto itinerary, Principal principal) {
         int userId = userDao.findIdByUsername(principal.getName());
         return dao.updateItinerary(itinerary, userId);
     }
