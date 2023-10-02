@@ -1,9 +1,14 @@
 <template>
-<form v-if: 
-v-on:submit.prevent="createItinerary()">
+<form  v-on:submit.prevent="createItinerary"
+>
   <div class="monuments">
     <h1>Monuments HomePage</h1>
-    
+
+     <div> <input v-model="newItinerary.date" type="date" id="itineraryDate" value="itineraryDate" >Choose the Date for Your Itinerary
+        <div><input v-model="newItinerary.name" type="text" id="itineraryName" value="iteneraryName" >Name Your Itinerary</div>
+        
+        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button></div>
+{{newItinerary}}
         <div class="monumentCard" 
         v-for="monument in monumentsList" 
         v-bind:key="monument.id"
@@ -13,13 +18,14 @@ v-on:submit.prevent="createItinerary()">
         <img v-bind:src=" monument.image"/>  
         <p>Rating: {{monument.rate}}</p>
 
-        <div><input type="checkbox" id="monumentName" value="monumentId" 
+        <div><input type="radio" id="monumentName" value="monumentId" 
          unchecked @change="filterMonuments( monument.id )">Add to Itinerary</div>
         
         </div>
-         <div> <input type="date" name="itineraryDate" id="itineraryDate">Choose Date</div>
-        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
+        
+       
       {{filteredList}}
+
   </div>
   </form>
 </template>
@@ -33,7 +39,12 @@ export default {
     return {
       monumentsList : [],
       filteredList: [],
-      addIfChecked: false 
+      newItinerary: {},
+      
+        // date : '',
+        // text : ''
+       
+      
     }
   },
   created() {
@@ -44,20 +55,18 @@ export default {
     );
   },
   methods: {
-    // filterMonuments() {
-    //   if (this.addIfChecked) {
-    //     return this.filteredList.filter((monument) => monument.checked);
-    //   }else {
-    //     return this.filteredList
-    //   }
-    // },
-    filterMonuments(monumentId, itineraryDate, userId) {
-      this.filteredList.push(monumentId, itineraryDate, userId)
+
+    filterMonuments(monumentId) {
+      this.filteredList.push(monumentId)
     },
+    // newItineraryMethod(date, text) {
+    //   this.newItinerary.push(date, text)
+    // },
     createItinerary() {
-      service.createItinerary(this.filteredList).then(
+      service.createItinerary(this.newItinerary).then(
         (response) => {
           if (response.status === 200) {
+            window.alert('Itinerary Created')
             this.$router.push(`/itineraryPage`);
           }
         }

@@ -2,7 +2,7 @@
 <div>
   <itinerary-map></itinerary-map>
   <create-itinerary></create-itinerary>
-{{newItinerary}}
+{{newItinerary}} If you see this first, it isn't working.
   </div>
 </template>
 
