@@ -77,16 +77,13 @@ export default {
 
 <style scoped>
 form {
-  background-image: url('/src/images/capital2.jpg');
-  padding: 20px;
-  border-radius: 8px;
-  background-attachment: fixed;
+  background-image: url('/src/images/newcapital.jpg');
+  padding: 45px;
+  border-radius: 20px; 
   background-position: center;
   background-repeat: no-repeat;
-  margin: auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the form */
+  background-size: auto 100%;  
 }
-
 
 #login {
   display: flex;
@@ -135,10 +132,6 @@ h1 {
 
 <style scoped>
 
-  /* div {
-  background-color: #473DFF;
-  }  */
-
   #login {
     display: flex;
     justify-content: center;
@@ -158,7 +151,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 200%;
-  background-color:  #473DFF; 
+  background-color: #473DFF; 
   z-index: -1; 
   }
 
