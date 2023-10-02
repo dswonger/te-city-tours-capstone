@@ -39,5 +39,10 @@ public class AttractionsController {
   public int deleteAttraction (@PathVariable int id) {
     return dao.deleteAttraction(id);
   }
+  @PreAuthorize("permitAll")
+  @RequestMapping (path = "/attractions/{id}", method = RequestMethod.GET)
+  public Attractions getAttractionById (@PathVariable int id) {
+    return dao.getAttractionById(id);
+  }
 
 }

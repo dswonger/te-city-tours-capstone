@@ -12,5 +12,6 @@ public interface AttractionsDao {
     public boolean addAttraction (Attractions newAttraction);
     public boolean updateAttraction(Attractions updatedAttraction);
     public int deleteAttraction(int id);
+    public Attractions getAttractionById (int id);
 
 }

@@ -27,6 +27,14 @@ public class Attractions {
 
     }
 
+    public Attractions (int id, String name, String address, String description, String image, String type) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.description = description;
+        this.image = image;
+        this.type = type;
+    }
     public String getAddress() {
         return address;
     }

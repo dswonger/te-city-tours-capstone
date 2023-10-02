@@ -113,9 +113,11 @@ public class JdbcAttractionsDao implements AttractionsDao{
 
         Attractions attractionById = new Attractions();
         try {
-            String sql = "SELECT * FROM attractions WHERE id = ?;";
+            String sql = "SELECT * FROM attractions WHERE id = ? ;";
             SqlRowSet result = template.queryForRowSet(sql, id);
-            attractionById = mapRowToAttractions(result);
+            if (result.next()) {
+                attractionById = mapRowToAttractions(result);
+            }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to database or server", e);
         }
