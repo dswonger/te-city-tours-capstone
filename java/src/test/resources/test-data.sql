@@ -5,7 +5,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('user2','user2','ROLE_US
 INSERT INTO users (username,password_hash,role) VALUES ('user3','user3','ROLE_USER');
 
 INSERT INTO attractions (name, address, description, image, type)
-VALUES ('National Gallery of Art ', 'Constitution Ave. NW, Washington, DC 20565 ',
+VALUES ('National Gallery of Art', 'Constitution Ave. NW, Washington, DC 20565',
 'The National Gallery of Art, and its attached Sculpture Garden, is a national art museum in Washington, D.C., United States, located on the National Mall, between 3rd and 9th Streets, at Constitution Avenue NW.',
 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQEzfvN0a5h2kRsyhpJSIw9eSqB13fYogK3dBN0hZNikc17k-1q', 'Museum'),
 

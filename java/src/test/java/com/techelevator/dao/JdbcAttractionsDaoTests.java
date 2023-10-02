@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Attractions;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,8 +17,8 @@ public class JdbcAttractionsDaoTests extends BaseDaoTests {
     protected static final Attractions ATTRACTION_3 = new Attractions (3, "National Air and Space Museum", "600 Independence Ave SW, Washington, DC 20560", "The National Air and Space Museum of the Smithsonian Institution, is a museum in Washington, D.C., in the United States dedicated to human flight and space exploration. Established in 1946 as the National Air Museum, its main building opened on the National Mall near L''Enfant Plaza in 1976.",
             "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRM7rHKDn4KhbnAfv2otT-knCvYfzqfSA8GdO5eWkSMHRbdWS0z", "Museum");
 
-            ('United States Holocaust Memorial Museum', '100 Raoul Wallenberg Pl SW, Washington, DC 20024', 'The United States Holocaust Memorial Museum is the United States'' official memorial to the Holocaust. Adjacent to the National Mall in Washington, D.C., the USHMM provides for the documentation, study, and interpretation of Holocaust history.',
-            'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTYd6QSJ3mz8QUely6JXDS1FJEHHsPlW0oYxYqGne2BJ6tQMmY2', 'Museum');
+    protected static final Attractions ATTRACTION_4 = new Attractions (4,"United States Holocaust Memorial Museum", "100 Raoul Wallenberg Pl SW, Washington, DC 20024", "The United States Holocaust Memorial Museum is the United States'' official memorial to the Holocaust. Adjacent to the National Mall in Washington, D.C., the USHMM provides for the documentation, study, and interpretation of Holocaust history.",
+            "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTYd6QSJ3mz8QUely6JXDS1FJEHHsPlW0oYxYqGne2BJ6tQMmY2", "Museum");
 
     JdbcAttractionsDao sut;
 
@@ -30,9 +31,19 @@ public class JdbcAttractionsDaoTests extends BaseDaoTests {
     public void findAttractionsById (){
 
         Attractions inDB = sut.getAttractionById(1);
-
+        AssertAttractionsMatch(ATTRACTION_1, inDB);
 
 
     }
 
+
+    public void AssertAttractionsMatch (Attractions expected, Attractions result) {
+        Assert.assertEquals(expected.getId(),result.getId());
+        Assert.assertEquals(expected.getName(), result.getName());
+        Assert.assertEquals(expected.getAddress(), result.getAddress());
+        Assert.assertEquals(expected.getDescription(), result.getDescription());
+        Assert.assertEquals(expected.getImage(), result.getImage());
+        Assert.assertEquals(expected.getType(),result.getType());
+
+    }
 }
