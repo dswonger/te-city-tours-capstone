@@ -43,6 +43,9 @@
             @change="filterMonuments(monument.id)"
           />Add to Itinerary
         </div>
+        
+       
+{{filteredList}}
       </div>
 
       {{ filteredList }}
@@ -82,8 +85,8 @@ export default {
         .createItinerary(this.newItinerary)
         .then((response) => {
           if (response.status === 200) {
-            window.alert("Itinerary Created");
-            this.$router.push(`/itineraryPage`);
+            window.alert('Itinerary Created');
+            
           }
         })
         .catch((error) => {
