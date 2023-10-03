@@ -16,6 +16,12 @@ VALUES ('National Gallery of Art', 'Constitution Ave. NW, Washington, DC 20565',
  'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRM7rHKDn4KhbnAfv2otT-knCvYfzqfSA8GdO5eWkSMHRbdWS0z', 'Museum'),
 
 ('United States Holocaust Memorial Museum', '100 Raoul Wallenberg Pl SW, Washington, DC 20024', 'The United States Holocaust Memorial Museum is the United States'' official memorial to the Holocaust. Adjacent to the National Mall in Washington, D.C., the USHMM provides for the documentation, study, and interpretation of Holocaust history.',
- 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTYd6QSJ3mz8QUely6JXDS1FJEHHsPlW0oYxYqGne2BJ6tQMmY2', 'Museum');
+ 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTYd6QSJ3mz8QUely6JXDS1FJEHHsPlW0oYxYqGne2BJ6tQMmY2', 'Museum'),
+
+ ('Jefferson Memorial', '16 E Basin Dr SW, Washington, DC 20242', 'The Jefferson Memorial is a presidential memorial built in Washington, D.C., between 1939 and 1943 in honor of Thomas Jefferson, the principal author of the United States Declaration of Independence.',
+  'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRNMxhs60y1ruXngKYKz86lBIQLKGKuWuS3LqfpP2tLP0NLpv2I', 'Monument'),
+
+ ('Korean War Memorial', '900 Ohio Dr SW, Washington, DC 20024', 'The Korean War Veterans Memorial is located in Washington, D.C.''s West Potomac Park, southeast of the Lincoln Memorial and just south of the Reflecting Pool on the National Mall. It memorializes those who served in the Korean War. The national memorial was dedicated in 1995',
+  'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRiMT0mGIad1ogUkyiaKyxAqvs9TsHBuZQG1zY0wVwhmXpYDbBT', 'Monument');
 
 COMMIT TRANSACTION;

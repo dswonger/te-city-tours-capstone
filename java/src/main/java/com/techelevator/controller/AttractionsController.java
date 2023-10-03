@@ -33,7 +33,12 @@ public class AttractionsController {
   @RequestMapping (path = "/editAttraction", method = RequestMethod.PUT)
   public boolean editAttraction (@RequestBody Attractions attraction) {
 
-    return dao.updateAttraction(attraction); }
+    if ( dao.updateAttraction(attraction) != null) {
+      return true;
+    }
+
+    return false;
+  }
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping (path = "/attractions/{id}", method = RequestMethod.DELETE)
   public int deleteAttraction (@PathVariable int id) {

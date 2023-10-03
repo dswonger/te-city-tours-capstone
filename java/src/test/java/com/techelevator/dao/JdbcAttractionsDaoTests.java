@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.rmi.MarshalledObject;
 import java.util.List;
 
 public class JdbcAttractionsDaoTests extends BaseDaoTests {
@@ -23,11 +24,51 @@ public class JdbcAttractionsDaoTests extends BaseDaoTests {
     protected static final Attractions ATTRACTION_4 = new Attractions (4,"United States Holocaust Memorial Museum", "100 Raoul Wallenberg Pl SW, Washington, DC 20024", "The United States Holocaust Memorial Museum is the United States'' official memorial to the Holocaust. Adjacent to the National Mall in Washington, D.C., the USHMM provides for the documentation, study, and interpretation of Holocaust history.",
             "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTYd6QSJ3mz8QUely6JXDS1FJEHHsPlW0oYxYqGne2BJ6tQMmY2", "Museum");
 
+    protected static final Attractions ATTRACTION_5 = new Attractions(5, "Jefferson Memorial", "16 E Basin Dr SW, Washington, DC 20242", "The Jefferson Memorial is a presidential memorial built in Washington, D.C., between 1939 and 1943 in honor of Thomas Jefferson, the principal author of the United States Declaration of Independence.",
+            "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRNMxhs60y1ruXngKYKz86lBIQLKGKuWuS3LqfpP2tLP0NLpv2I", "Monument");
+
+    protected static final Attractions ATTRACTION_6 = new Attractions (6, "Korean War Memorial", "900 Ohio Dr SW, Washington, DC 20024", "The Korean War Veterans Memorial is located in Washington, D.C.'s West Potomac Park, southeast of the Lincoln Memorial and just south of the Reflecting Pool on the National Mall. It memorializes those who served in the Korean War. The national memorial was dedicated in 1995",
+        "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRiMT0mGIad1ogUkyiaKyxAqvs9TsHBuZQG1zY0wVwhmXpYDbBT", "Monument");
     JdbcAttractionsDao sut;
 
     @Before
     public void setup () {
      sut =   new JdbcAttractionsDao(dataSource);
+    }
+
+
+
+    @Test
+    public void get_all_museums_test() {
+        List<Attractions> museums = sut.getAllMuseums();
+        AssertAttractionsMatch(ATTRACTION_1,museums.get(0));
+        AssertAttractionsMatch(ATTRACTION_2, museums.get(1));
+        AssertAttractionsMatch(ATTRACTION_3, museums.get(2));
+    }
+
+    @Test
+    public void get_all_monuments_test() {
+        List <Attractions> monuments = sut.getAllMonuments();
+        AssertAttractionsMatch(ATTRACTION_5, monuments.get(0));
+        AssertAttractionsMatch(ATTRACTION_6, monuments.get(1));
+        Assert.assertEquals(2, monuments.size());
+
+    }
+    @Test
+    public void add_attraction_test () {
+        Attractions newAttraction  = new Attractions("Random name", "Random address", "Random description", "Random type");
+        Attractions inDb = sut.addAttraction(newAttraction);
+        AssertAttractionsMatch(newAttraction,inDb);
+
+    }
+
+    @Test
+    public void update_attraction_test () {
+        Attractions ATTRACTION_7 = new Attractions (6, "lol", "yabba dabba", "The Korean War Veterans Memorial is located in Washington, D.C.'s West Potomac Park, southeast of the Lincoln Memorial and just south of the Reflecting Pool on the National Mall. It memorializes those who served in the Korean War. The national memorial was dedicated in 1995",
+                 "Monument");
+
+        Attractions update = sut.updateAttraction(ATTRACTION_7);
+        AssertAttractionsMatch(ATTRACTION_7, update);
     }
 
     @Test
@@ -39,36 +80,32 @@ public class JdbcAttractionsDaoTests extends BaseDaoTests {
 
     }
 
-    @Test
-    public void getAllMuseums() {
-        List<Attractions> museums = sut.getAllMuseums();
-        AssertAttractionsMatch(ATTRACTION_1,museums.get(0));
-        AssertAttractionsMatch(ATTRACTION_2, museums.get(1));
-        AssertAttractionsMatch(ATTRACTION_3, museums.get(2));
-    }
-    @Test
-    public void addAttraction () {
-        Attractions newAttraction  = new Attractions("Random name", "Random address", "Random description", "Random type");
-        Attractions inDb = sut.addAttraction(newAttraction);
-        AssertInsertWorks(newAttraction, inDb);
-
-    }
-
 
     public void AssertAttractionsMatch (Attractions expected, Attractions result) {
-        Assert.assertEquals(expected.getId(),result.getId());
-        Assert.assertEquals(expected.getName(), result.getName());
-        Assert.assertEquals(expected.getAddress(), result.getAddress());
-        Assert.assertEquals(expected.getDescription(), result.getDescription());
-        Assert.assertEquals(expected.getImage(), result.getImage());
-        Assert.assertEquals(expected.getType(),result.getType());
+        if (expected.getId() != 0){
+            Assert.assertEquals(expected.getId(),result.getId());
+        }
 
+        if (expected.getName() != null) {
+            Assert.assertEquals(expected.getName(), result.getName());
+        }
+
+        if (expected.getAddress() != null) {
+            Assert.assertEquals(expected.getAddress(), result.getAddress());
+        }
+
+        if (expected.getDescription() != null) {
+            Assert.assertEquals(expected.getDescription(), result.getDescription());
+        }
+
+        if (expected.getImage() != null) {
+            Assert.assertEquals(expected.getImage(), result.getImage());
+        }
+
+        if (expected.getType() != null) {
+            Assert.assertEquals(expected.getType(), result.getType());
+        }
     }
 
-    public void AssertInsertWorks (Attractions expect, Attractions res) {
-        Assert.assertEquals(expect.getName(), res.getName());
-        Assert.assertEquals(expect.getDescription(), res.getDescription());
-        Assert.assertEquals(expect.getAddress(), res.getAddress());
-        Assert.assertEquals(expect.getType(), res.getType());
-    }
+
 }

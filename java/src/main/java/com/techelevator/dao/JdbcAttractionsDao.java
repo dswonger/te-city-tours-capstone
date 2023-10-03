@@ -76,22 +76,49 @@ public class JdbcAttractionsDao implements AttractionsDao{
     }
 
     @Override
-    public boolean updateAttraction(Attractions updatedAttraction) {
-        String sql = "UPDATE attractions SET name = ?, address = ?, description = ?, type = ? WHERE id = ?;";
+    public Attractions updateAttraction(Attractions updatedAttraction) {
 
-        try {
-            int numberOfRows = template.update(sql, updatedAttraction.getName(), updatedAttraction.getAddress(),
-                    updatedAttraction.getDescription(), updatedAttraction.getType(), updatedAttraction.getId());
+     try {
 
-            if (numberOfRows == 1) {
-                return true;
-            }
+        if (updatedAttraction.getName() != null) {
+
+            String sql = "UPDATE attractions SET name = ? WHERE id = ?";
+            template.update(sql,updatedAttraction.getName(), updatedAttraction.getId());
+
+        }
+
+        if (updatedAttraction.getAddress() != null) {
+
+            String sql = "UPDATE attractions SET address = ? WHERE id = ?;";
+            template.update(sql, updatedAttraction.getAddress(), updatedAttraction.getId());
+
+        }
+
+        if (updatedAttraction.getDescription() != null) {
+            String sql = "UPDATE attractions SET description = ? WHERE id = ?;";
+            template.update(sql,updatedAttraction.getDescription(), updatedAttraction.getId());
+
+        }
+
+        if (updatedAttraction.getImage() != null) {
+            String sql = "UPDATE attractions SET image = ? WHERE id = ? ;";
+            template.update(sql,updatedAttraction.getImage(), updatedAttraction.getId());
+        }
+
+        if (updatedAttraction.getType() != null) {
+            String sql = "UPDATE attractions SET type = ? WHERE id = ?;";
+            template.update(sql, updatedAttraction.getType(), updatedAttraction.getId());
+        }
+
+
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }catch (DataIntegrityViolationException e) {
             throw new DaoException( "Data integrity violation", e);
         }
-        return false;
+
+        return getAttractionById(updatedAttraction.getId());
+
     }
 
 

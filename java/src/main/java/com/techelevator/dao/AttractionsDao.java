@@ -10,7 +10,7 @@ public interface AttractionsDao {
     public List<Attractions> getAllMonuments ();
 
     public Attractions addAttraction (Attractions newAttraction);
-    public boolean updateAttraction(Attractions updatedAttraction);
+    public Attractions updateAttraction(Attractions updatedAttraction);
     public int deleteAttraction(int id);
     public Attractions getAttractionById (int id);
 
