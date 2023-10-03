@@ -77,6 +77,7 @@ export default {
 
 <style scoped>
 form {
+<<<<<<< HEAD
   background-image: url('/src/images/capital2.jpg');
   padding: 20px;
   background-position: center;
@@ -85,6 +86,16 @@ form {
 }
 
 <style>
+=======
+  background-image: url('/src/images/newcapital.jpg');
+  padding: 45px;
+  border-radius: 20px; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;  
+}
+
+>>>>>>> main
 #login {
   display: flex;
   justify-content: center;
@@ -132,10 +143,6 @@ h1 {
 
 <style scoped>
 
-  /* div {
-  background-color: #473DFF;
-  }  */
-
   #login {
     display: flex;
     justify-content: center;
@@ -155,7 +162,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 200%;
-  background-color:  #473DFF; 
+  background-color: #473DFF; 
   z-index: -1; 
   }
 

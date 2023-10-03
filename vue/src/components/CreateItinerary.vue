@@ -15,7 +15,7 @@ import service from '../services/ServerService.js';
 export default {
     data() {
         return {
-            newItinerary: {}
+            newItinerary: []
         }
     },
     methods: {

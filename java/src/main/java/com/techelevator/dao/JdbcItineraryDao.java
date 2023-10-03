@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Attractions;
 import com.techelevator.model.Itinerary;
+import com.techelevator.model.ItineraryDto.CreateItineraryDto;
+import com.techelevator.model.ItineraryDto.UpdateItineraryDto;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -10,9 +12,10 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 @Component
 public class JdbcItineraryDao implements ItineraryDao {
     private JdbcTemplate template;
@@ -22,9 +25,9 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     @Override
-    public List<Itinerary> getAllItineraries( int id) {
+    public List<Itinerary> getAllItineraries( int userId) {
         String sql = "SELECT * FROM itinerary WHERE user_id = ?;";
-        SqlRowSet res = template.queryForRowSet(sql,id);
+        SqlRowSet res = template.queryForRowSet(sql,userId);
         List <Itinerary> allItineraries = new ArrayList<>();
         while (res.next()){
             Itinerary itinerary = mapToRowsetItinerary(res);
@@ -38,10 +41,10 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     @Override
-    public Itinerary getItineraryById(int id) {
+    public Itinerary getItineraryById(int id, int userId) {
         Itinerary itinerary = null;
-        String sql = "SELECT * FROM itinerary WHERE user_id = ?;";
-        SqlRowSet res = template.queryForRowSet(sql, id);
+        String sql = "SELECT * FROM itinerary WHERE user_id = ? AND itinerary_id = ?;";
+        SqlRowSet res = template.queryForRowSet(sql, userId, id);
         if(res.next()){
            itinerary = mapToRowsetItinerary(res);
            // get list of attractions with itinerary Id
@@ -64,34 +67,32 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     @Override
-    public Itinerary createItinerary(Itinerary itinerary) {
+    public Itinerary createItinerary(CreateItineraryDto itinerary, int userId) {
         Itinerary newItinerary =null;
-        String sql = "INSERT INTO itinerary (location_id,starting_point,date_of_itinerary,user_id) " +
-                "VALUES ( ?,?,?,?) RETURNING itinerary_id;";
+        String sql = "INSERT INTO itinerary (date_of_itinerary,itinerary_name, user_id) " +
+                "VALUES (?,?,?) RETURNING itinerary_id;";
 
-            Integer newItineraryId = template.queryForObject(sql, Integer.class,
-                    itinerary.getLocations(), itinerary.getStartingPoint(),
-                    itinerary.getDate(), itinerary.getUserId());
-            newItinerary = getItineraryById(newItineraryId);
+        Integer newItineraryId = template.queryForObject(sql, Integer.class,
+                itinerary.getDate(), itinerary.getName(), userId);
+        newItinerary = getItineraryById(newItineraryId, userId);
 
         return newItinerary;
     }
 
     @Override
-    public Itinerary updateItinerary(Itinerary itinerary, int userId) {
-        Itinerary target = getItineraryById(itinerary.getId());
+    public Itinerary updateItinerary(UpdateItineraryDto itinerary, int userId) {
+        Itinerary target = getItineraryById(itinerary.getId(), userId);
 
         if (userId == target.getUserId()) {
             Itinerary editItinerary = null;
-            String sql = "UPDATE itinerary SET location_id = ?, Starting_point = ?, Date_of_itinerary = ? " +
+            String sql = "UPDATE itinerary SET starting_point = ?, date_of_itinerary = ? , itinerary_name = ?" +
                     "WHERE itinerary_id =?;";
 
-            int numberOfRow = template.update(sql, itinerary.getLocations(),
-                    itinerary.getStartingPoint(), itinerary.getDate(), itinerary.getId());
+            int numberOfRow = template.update(sql, itinerary.getStartingPoint(), itinerary.getDate(), itinerary.getName(), itinerary.getId());
             if (numberOfRow == 0) {
                 throw new DaoException("Zero rows affected, expected at least one");
             }else{
-                editItinerary = getItineraryById(itinerary.getId());
+                editItinerary = getItineraryById(itinerary.getId(), userId);
             }
             return editItinerary;
         } else {
@@ -101,10 +102,10 @@ public class JdbcItineraryDao implements ItineraryDao {
 
     @Override
     public int deleteItinerary(int id, int userId) {
-        Itinerary target = getItineraryById(id);
+        Itinerary target = getItineraryById(id, userId);
 
         if (userId == target.getUserId()) {
-            String sql = "DELETE FROM itinerary WHERE id = ?;";
+            String sql = "DELETE FROM itinerary WHERE itinerary_id = ?;";
             int numberOfRows= template.update(sql,id);
             return numberOfRows;
         } else {
@@ -113,11 +114,20 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     private Itinerary mapToRowsetItinerary(SqlRowSet res) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = formatter.parse(res.getString("date_of_itinerary"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Itinerary itinerary = new Itinerary();
-        itinerary.setId(res.getInt("id"));
+        itinerary.setId(res.getInt("itinerary_id"));
         itinerary.setStartingPoint(res.getInt("starting_point"));
-        itinerary.setDate(res.getString("data"));
+        itinerary.setDate(date);
         itinerary.setUserId(res.getInt("user_id"));
+        itinerary.setName(res.getString("itinerary_name"));
 
         return itinerary;
     }
@@ -138,7 +148,7 @@ public class JdbcItineraryDao implements ItineraryDao {
 
     @Override
     public void addAttraction (int itineraryId, int attractionId){
-        String sql = "INSERT INTO itinerary_attraction (attraction_id,  itinerary_id) VALUES (?,?);";
+        String sql = "INSERT INTO itinerary_attraction (attraction_id,  itinerary_id) VALUES (?,?) RETURNING itinerary_id;";
         SqlRowSet res = template.queryForRowSet(sql,attractionId, itineraryId);
 
         if (!res.next()) {
@@ -149,10 +159,10 @@ public class JdbcItineraryDao implements ItineraryDao {
     @Override
     public void removeAttraction (int itineraryId, int attractionId){
         String sql = "DELETE FROM itinerary_attraction WHERE attraction_id = ? AND itinerary_id =?;";
-        SqlRowSet res = template.queryForRowSet(sql,attractionId, itineraryId);
+        int res = template.update(sql,attractionId, itineraryId);
 
-        if (!res.next()) {
-            throw new DaoException("Failed to add Attraction to Itinerary");
+        if (res == 0) {
+            throw new DaoException("Failed to delete Attraction to Itinerary");
         }
     };
 }
