@@ -33,6 +33,9 @@ export default {
      getItinerary(id) { //call this to the itinerary page for logged in user
          return axios.get(`/itinerary/${id}`)
      },
+     getAllItinerary() {
+        return axios.get(`/itinerary/getAll`)
+     },
      findIdByUsername(username) {
          return axios.get(`/userId/${username}`)
      },
