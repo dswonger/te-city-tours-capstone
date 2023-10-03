@@ -26,7 +26,7 @@ public class AttractionsController {
   }
   @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
   @RequestMapping (path = "/addAttraction", method = RequestMethod.POST)
-  public boolean addAttraction (@RequestBody Attractions attraction) {
+  public Attractions addAttraction (@RequestBody Attractions attraction) {
    return dao.addAttraction(attraction);
 }
   @PreAuthorize("hasRole('ROLE_ADMIN')")

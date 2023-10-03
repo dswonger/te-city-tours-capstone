@@ -59,20 +59,19 @@ public class JdbcAttractionsDao implements AttractionsDao{
     }
 
     @Override
-    public boolean addAttraction(Attractions newAttraction) {
-        String sql = "INSERT INTO attractions (name, address, description, type) VALUES (?, ?, ?, ?);";
+    public Attractions addAttraction (Attractions newAttraction) {
+        String sql = "INSERT INTO attractions (name, address, description, type) VALUES (?, ?, ?, ?) RETURNING id;";
+        Attractions insert = null;
 
      try {
-         int numberOfRows = template.update(sql, newAttraction.getName(), newAttraction.getAddress(), newAttraction.getDescription(), newAttraction.getType());
-       if (numberOfRows == 1) {
-           return true;
-       }
+         int id = template.queryForObject(sql, Integer.class, newAttraction.getName(), newAttraction.getAddress(), newAttraction.getDescription(), newAttraction.getType());
+         insert = getAttractionById(id);
      } catch (CannotGetJdbcConnectionException e) {
          throw new DaoException("Unable to connect to server or database", e);
      }catch (DataIntegrityViolationException e) {
          throw new DaoException("Data integrity violation", e);
      }
-     return false;
+     return insert;
 
     }
 
