@@ -117,7 +117,6 @@ CREATE SEQUENCE seq_itinerary_id
   INCREMENT BY 1
   START WITH 2001
   NO MAXVALUE;
-
 CREATE TABLE itinerary (
     itinerary_id SERIAL,
     Starting_point int,
