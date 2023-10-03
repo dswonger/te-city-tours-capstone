@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <h1>Welcome to Washington DC</h1>
+
     
+        
   </div>
 </template>
 

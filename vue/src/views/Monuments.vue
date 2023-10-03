@@ -1,19 +1,31 @@
 <template>
-<form v-on:submit.prevent="submitMonuments()">
+<form  v-on:submit.prevent="createItinerary"
+>
   <div class="monuments">
     <h1>Monuments HomePage</h1>
-   
-        <div class="monumentCard" v-for="monument in monumentsList" v-bind:key="monument.id">
+
+     <div> <input v-model="newItinerary.date" type="date" id="itineraryDate" value="itineraryDate" >Choose the Date for Your Itinerary
+        <div><input v-model="newItinerary.name" type="text" id="itineraryName" value="iteneraryName" >Name Your Itinerary</div>
+        
+        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button></div>
+{{newItinerary}}
+        <div class="monumentCard" 
+        v-for="monument in monumentsList" 
+        v-bind:key="monument.id"
+        >
         <h3>{{monument.name}}</h3> 
         <p>{{monument.description}} </p>
-
         <img v-bind:src=" monument.image"/>  
-
         <p>Rating: {{monument.rate}}</p>
-        <p><input type="checkbox" name="monumentName" value="monumentName" unchecked>Add to Itinerary</p>
-        <!-- <router-link v-bind:to="{name: 'modify', params: {id: museum.id}}"></router-link> -->
+
+        <div><input type="radio" id="monumentName" value="monumentId" 
+         unchecked @change="filterMonuments( monument.id )">Add to Itinerary</div>
+        
         </div>
-        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
+        
+       
+      {{filteredList}}
+
   </div>
   </form>
 </template>
@@ -25,7 +37,14 @@ export default {
   name: "monuments",
   data() {
     return {
-      monumentsList : []
+      monumentsList : [],
+      filteredList: [],
+      newItinerary: {},
+      
+        // date : '',
+        // text : ''
+       
+      
     }
   },
   created() {
@@ -36,10 +55,18 @@ export default {
     );
   },
   methods: {
-    submitMonuments() {
-      service.addItinerary(this.monument).then(
+
+    filterMonuments(monumentId) {
+      this.filteredList.push(monumentId)
+    },
+    // newItineraryMethod(date, text) {
+    //   this.newItinerary.push(date, text)
+    // },
+    createItinerary() {
+      service.createItinerary(this.newItinerary).then(
         (response) => {
           if (response.status === 200) {
+            window.alert('Itinerary Created')
             this.$router.push(`/itineraryPage`);
           }
         }
