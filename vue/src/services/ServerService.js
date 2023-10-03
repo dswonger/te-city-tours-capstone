@@ -30,7 +30,7 @@ export default {
          return axios.post(`/itinerary/create`, newItinerary);
          
      },
-     getItinerary(id) {
+     getItinerary(id) { //call this to the itinerary page for logged in user
          return axios.get(`/itinerary/${id}`)
      },
      findIdByUsername(username) {
@@ -38,5 +38,11 @@ export default {
      },
      addReview(review) {
          return axios.get('/addReview', review)
+     },
+     updateItinerary() {
+         return axios.put(`/itinerary/edit`)
+     },
+     getAllItineraries(){
+         return axios.get(`/itinerary/getAll`)
      }
 }

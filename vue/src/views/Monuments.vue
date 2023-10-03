@@ -24,7 +24,7 @@
         </div>
         
        
-      {{filteredList}}
+{{filteredList}}
 
   </div>
   </form>
@@ -66,8 +66,8 @@ export default {
       service.createItinerary(this.newItinerary).then(
         (response) => {
           if (response.status === 200) {
-            window.alert('Itinerary Created')
-            this.$router.push(`/itineraryPage`);
+            window.alert('Itinerary Created');
+            
           }
         }
       ).catch(
