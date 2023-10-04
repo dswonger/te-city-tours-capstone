@@ -90,12 +90,12 @@ export default {
 
 <style scoped>
 form {
-  background-image: url("/src/images/newcapital.jpg");
-  padding: 45px;
-  border-radius: 20px;
+  background-image: url('/src/images/capital2.jpg');
+  padding: 200px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: auto 100%;
+  margin: auto;
+  /* box-shadow: 10px 5px 5px red; */
 }
 
 #login {
@@ -150,7 +150,15 @@ h1 {
   width: 564px;
 }
 
-.content {
+  #login {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    width: 564px;
+    
+  }
+
+  .content {
   position: relative;
   z-index: 1; /* Place it above the background */
 }
@@ -160,10 +168,14 @@ h1 {
   top: 0;
   left: 0;
   width: 100%;
-  height: 200%;
-  background-color: #473dff;
-  z-index: -1;
-}
+  height: 100vh;
+  background-color: #0A3161; 
+  z-index: -1; 
+  }
+/* 
+  #router-link {
+    color: white;
+  } */
 
 /* #app {
     display: flex;

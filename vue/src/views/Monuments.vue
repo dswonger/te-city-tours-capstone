@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 <div>
     <h1>Monuments Page</h1>
   <p>Select Itinerary to Update</p>
@@ -35,6 +36,31 @@
         </button>
 {{ filteredList }}
     </div>
+=======
+<div class="background">
+<form v-if: 
+v-on:submit.prevent="createItinerary()">
+  <div class="monuments">
+    <h1>Monuments Home Page</h1>
+    
+        <div class="monumentCard" 
+        v-for="monument in monumentsList" 
+        v-bind:key="monument.id"
+        >
+        <h3>{{monument.name}}</h3> 
+        <p>{{monument.description}} </p>
+        <img v-bind:src=" monument.image"/>  
+        <p>Rating: {{monument.rate}}</p>
+
+        <div><input type="checkbox" id="monumentName" value="monumentId" 
+         unchecked @change="filterMonuments( monument.id )">Add to Itinerary</div>
+        
+        </div>
+         <div> <input type="date" name="itineraryDate" id="itineraryDate">Choose Date</div>
+        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
+      {{filteredList}}
+  </div>
+>>>>>>> main
   </form>
   </div>
 </template>
@@ -99,13 +125,32 @@ export default {
 
 <style scoped>
 div.monumentCard {
-  border: 1px black solid;
-  border-radius: 6px;
-  padding: 1rem;
-  margin: 10px;
-  font: 12pt sans-serif;
+    border: 1px 0A3161;
+    background-color: white;
+    border-radius: 2px;
+    padding: 1rem;
+    margin: 10px;
+    font: 12pt sans-serif;
+    
 }
 img {
   height: 100px;
 }
+
+h1 {
+  text-align: center;
+  color: white;
+  padding-top: 50px;
+
+}
+
+.background {
+position: absolute;
+top: 0;
+left: 0;
+background-color:  #B31942; 
+z-index: -1;  
+}
+
+
 </style>

@@ -1,7 +1,11 @@
 <template>
 <div>
+<<<<<<< HEAD
   <p>Select Itinerary to Create a Route</p>
   <itinerary-select></itinerary-select>
+=======
+  <div class="background">
+>>>>>>> main
   <itinerary-map></itinerary-map>
 
   
@@ -64,15 +68,18 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #a8c7e6;
+  color: white;
   margin-top: 60px;
 }
-div.itineraryCard {
-    border: 1px black solid;
-    border-radius: 6px;
-    padding: 1rem;
-    margin: 10px;
-    font: 12pt sans-serif;
-    
-}
+
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: white; 
+  z-index: -1; 
+  }
 </style>

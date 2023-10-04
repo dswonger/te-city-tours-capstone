@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 <div>
    <h1>Museums Page</h1>
      <p>Select Itinerary to Update</p>
@@ -12,6 +13,12 @@
     <div class="background">
 
    
+=======
+<div class="background">
+<form v-on:submit.prevent="createItinerary()">
+  <div class="museums">
+    <h1>Museums Home Page</h1>
+>>>>>>> main
     
     <div class="museumCard" 
     v-for="museum in museumsList" 
@@ -30,7 +37,6 @@
           Update Itinerary!
         </button>
       {{filteredList}}
-  </div>
   </div>
   </form>
   </div>
@@ -84,22 +90,34 @@ export default {
 };
 </script>
 
+
 <style scoped>
 div.museumCard {
-    border: 1px black solid;
+    border: 1px 0A3161;
     background-color: white;
     border-radius: 6px;
     padding: 1rem;
     margin: 20px;
     font: 12pt sans-serif;
-    
 }
+
 img {
   height: 100px;
 }
 
-.background {
-  background-color: red;  
-}
-</style>
+h1 {
+  text-align: center;
+  color: white;
+  padding-top: 50px;
 
+}
+
+.background {
+position: absolute;
+top: 0; 
+left: 0;
+background-color:  #0A3161; 
+z-index: -1; 
+}
+
+</style>

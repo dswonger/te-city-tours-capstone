@@ -26,18 +26,28 @@ public class AttractionsController {
   }
   @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
   @RequestMapping (path = "/addAttraction", method = RequestMethod.POST)
-  public boolean addAttraction (@RequestBody Attractions attraction) {
+  public Attractions addAttraction (@RequestBody Attractions attraction) {
    return dao.addAttraction(attraction);
 }
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping (path = "/editAttraction", method = RequestMethod.PUT)
   public boolean editAttraction (@RequestBody Attractions attraction) {
 
-    return dao.updateAttraction(attraction); }
+    if ( dao.updateAttraction(attraction) != null) {
+      return true;
+    }
+
+    return false;
+  }
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @RequestMapping (path = "/attractions/{id}", method = RequestMethod.DELETE)
   public int deleteAttraction (@PathVariable int id) {
     return dao.deleteAttraction(id);
+  }
+  @PreAuthorize("permitAll")
+  @RequestMapping (path = "/attractions/{id}", method = RequestMethod.GET)
+  public Attractions getAttractionById (@PathVariable int id) {
+    return dao.getAttractionById(id);
   }
 
 }

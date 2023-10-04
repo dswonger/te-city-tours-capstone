@@ -59,6 +59,7 @@ public class JdbcAttractionsDao implements AttractionsDao{
     }
 
     @Override
+<<<<<<< HEAD
     public boolean addAttraction(Attractions newAttraction) {
         String sql = "INSERT INTO attractions (name, address, description, type) VALUES (?, ?, ?, ?);";
 
@@ -67,16 +68,30 @@ public class JdbcAttractionsDao implements AttractionsDao{
        if (numberOfRows == 1) {
            return true;
        }
+=======
+    public Attractions addAttraction (Attractions newAttraction) {
+        String sql = "INSERT INTO attractions (name, address, description, type) VALUES (?, ?, ?, ?) RETURNING id;";
+        Attractions insert = null;
+
+     try {
+         int id = template.queryForObject(sql, Integer.class, newAttraction.getName(), newAttraction.getAddress(), newAttraction.getDescription(), newAttraction.getType());
+         insert = getAttractionById(id);
+>>>>>>> main
      } catch (CannotGetJdbcConnectionException e) {
          throw new DaoException("Unable to connect to server or database", e);
      }catch (DataIntegrityViolationException e) {
          throw new DaoException("Data integrity violation", e);
      }
+<<<<<<< HEAD
      return false;
+=======
+     return insert;
+>>>>>>> main
 
     }
 
     @Override
+<<<<<<< HEAD
     public boolean updateAttraction(Attractions updatedAttraction) {
         String sql = "UPDATE attractions SET name = ?, address = ?, description = ?, type = ? WHERE id = ?;";
 
@@ -87,12 +102,55 @@ public class JdbcAttractionsDao implements AttractionsDao{
             if (numberOfRows == 1) {
                 return true;
             }
+=======
+    public Attractions updateAttraction(Attractions updatedAttraction) {
+
+     try {
+
+        if (updatedAttraction.getName() != null) {
+
+            String sql = "UPDATE attractions SET name = ? WHERE id = ?";
+            template.update(sql,updatedAttraction.getName(), updatedAttraction.getId());
+
+        }
+
+        if (updatedAttraction.getAddress() != null) {
+
+            String sql = "UPDATE attractions SET address = ? WHERE id = ?;";
+            template.update(sql, updatedAttraction.getAddress(), updatedAttraction.getId());
+
+        }
+
+        if (updatedAttraction.getDescription() != null) {
+            String sql = "UPDATE attractions SET description = ? WHERE id = ?;";
+            template.update(sql,updatedAttraction.getDescription(), updatedAttraction.getId());
+
+        }
+
+        if (updatedAttraction.getImage() != null) {
+            String sql = "UPDATE attractions SET image = ? WHERE id = ? ;";
+            template.update(sql,updatedAttraction.getImage(), updatedAttraction.getId());
+        }
+
+        if (updatedAttraction.getType() != null) {
+            String sql = "UPDATE attractions SET type = ? WHERE id = ?;";
+            template.update(sql, updatedAttraction.getType(), updatedAttraction.getId());
+        }
+
+
+>>>>>>> main
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }catch (DataIntegrityViolationException e) {
             throw new DaoException( "Data integrity violation", e);
         }
+<<<<<<< HEAD
         return false;
+=======
+
+        return getAttractionById(updatedAttraction.getId());
+
+>>>>>>> main
     }
 
 
@@ -113,9 +171,17 @@ public class JdbcAttractionsDao implements AttractionsDao{
 
         Attractions attractionById = new Attractions();
         try {
+<<<<<<< HEAD
             String sql = "SELECT * FROM attractions WHERE id = ?;";
             SqlRowSet result = template.queryForRowSet(sql, id);
             attractionById = mapRowToAttractions(result);
+=======
+            String sql = "SELECT * FROM attractions WHERE id = ? ;";
+            SqlRowSet result = template.queryForRowSet(sql, id);
+            if (result.next()) {
+                attractionById = mapRowToAttractions(result);
+            }
+>>>>>>> main
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to database or server", e);
         }

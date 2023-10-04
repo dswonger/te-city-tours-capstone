@@ -26,8 +26,13 @@ export default {
         return axios.delete(`/Museum/${id}`);
     },
     // these need to be updated with the backend endpoints
+<<<<<<< HEAD
+     createItinerary() {
+         return axios.post(`/itinerary/create`);
+=======
      createItinerary(newItinerary) {
          return axios.post(`/itinerary/create`, newItinerary);
+>>>>>>> main
          
      },
      getItinerary(id) { //call this to the itinerary page for logged in user
