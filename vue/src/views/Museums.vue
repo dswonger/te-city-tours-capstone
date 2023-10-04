@@ -1,5 +1,5 @@
 <template>
-<<<<<<< HEAD
+
 <div>
    <h1>Museums Page</h1>
      <p>Select Itinerary to Update</p>
@@ -13,12 +13,6 @@
     <div class="background">
 
    
-=======
-<div class="background">
-<form v-on:submit.prevent="createItinerary()">
-  <div class="museums">
-    <h1>Museums Home Page</h1>
->>>>>>> main
     
     <div class="museumCard" 
     v-for="museum in museumsList" 
@@ -38,8 +32,10 @@
         </button>
       {{filteredList}}
   </div>
+  </div>
   </form>
   </div>
+  
 </template>
 
 <script>

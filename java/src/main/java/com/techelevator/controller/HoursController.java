@@ -5,22 +5,16 @@ import com.techelevator.model.Hours;
 import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
-<<<<<<< HEAD
-=======
+
 import org.springframework.security.access.prepost.PreAuthorize;
->>>>>>> main
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin
-<<<<<<< HEAD
-public class HoursController {
-    @Autowired
-    HoursDao dao;
 
-=======
 @PreAuthorize("isAuthenticated()")
 public class HoursController {
     @Autowired

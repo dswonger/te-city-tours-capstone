@@ -15,7 +15,6 @@
 
 </template>
 
-<<<<<<< HEAD
 <style>
 #nav {
   display: block;
@@ -25,12 +24,6 @@
 }
 #nav link:hover {
   background-color: red;
-=======
-<style scoped>
-
-router-link{
-
->>>>>>> main
 }
 
 </style>
