@@ -5,14 +5,12 @@ import com.techelevator.model.Itinerary;
 import com.techelevator.model.ItineraryDto.CreateItineraryDto;
 import com.techelevator.model.ItineraryDto.UpdateItineraryDto;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -29,26 +27,36 @@ public class JdbcItineraryDao implements ItineraryDao {
         String sql = "SELECT * FROM itinerary WHERE user_id = ?;";
         SqlRowSet res = template.queryForRowSet(sql,userId);
         List <Itinerary> allItineraries = new ArrayList<>();
-        while (res.next()){
-            Itinerary itinerary = mapToRowsetItinerary(res);
-            // get list of attractions with itinerary Id
-            itinerary.setLocations(getAttractions(itinerary.getId()));
+        try {
+            while (res.next()) {
+                Itinerary itinerary = mapToRowsetItinerary(res);
+                // get list of attractions with itinerary Id
+                itinerary.setLocations(getAttractions(itinerary.getId()));
 
-            allItineraries.add(itinerary);
+                allItineraries.add(itinerary);
+            }
+        }catch  (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
         }
-
         return allItineraries;
     }
+
 
     @Override
     public Itinerary getItineraryById(int id, int userId) {
         Itinerary itinerary = null;
-        String sql = "SELECT * FROM itinerary WHERE user_id = ? AND itinerary_id = ?;";
-        SqlRowSet res = template.queryForRowSet(sql, userId, id);
-        if(res.next()){
-           itinerary = mapToRowsetItinerary(res);
-           // get list of attractions with itinerary Id
-           itinerary.setLocations(getAttractions(itinerary.getId()));
+        try {
+            String sql = "SELECT * FROM itinerary WHERE user_id = ? AND itinerary_id = ?;";
+            SqlRowSet res = template.queryForRowSet(sql, userId, id);
+            if (res.next()) {
+                itinerary = mapToRowsetItinerary(res);
+                // get list of attractions with itinerary Id
+                itinerary.setLocations(getAttractions(itinerary.getId()));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
         }
         return itinerary;
     }
@@ -59,8 +67,14 @@ public class JdbcItineraryDao implements ItineraryDao {
         SqlRowSet res = template.queryForRowSet(sql, itineraryId);
 
         List<Attractions> attractionList = new ArrayList<>();
-        while (res.next()) {
-            attractionList.add(mapToRowsetAttractions(res));
+        try {
+            while (res.next()) {
+                attractionList.add(mapToRowsetAttractions(res));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
         }
 
         return attractionList;
@@ -69,13 +83,18 @@ public class JdbcItineraryDao implements ItineraryDao {
     @Override
     public Itinerary createItinerary(CreateItineraryDto itinerary, int userId) {
         Itinerary newItinerary =null;
-        String sql = "INSERT INTO itinerary (date_of_itinerary,itinerary_name, user_id) " +
-                "VALUES (?,?,?) RETURNING itinerary_id;";
+        try {
+            String sql = "INSERT INTO itinerary (date_of_itinerary,itinerary_name, user_id) " +
+                    "VALUES (?,?,?) RETURNING itinerary_id;";
 
-        Integer newItineraryId = template.queryForObject(sql, Integer.class,
-                itinerary.getDate(), itinerary.getName(), userId);
-        newItinerary = getItineraryById(newItineraryId, userId);
-
+            Integer newItineraryId = template.queryForObject(sql, Integer.class,
+                    itinerary.getDate(), itinerary.getName(), userId);
+            newItinerary = getItineraryById(newItineraryId, userId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
         return newItinerary;
     }
 

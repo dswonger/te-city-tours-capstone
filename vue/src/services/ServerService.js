@@ -35,7 +35,7 @@ export default {
      },
      getAllItinerary() {
         return axios.get(`/itinerary/getAll`)
-     },
+     },  
      findIdByUsername(username) {
          return axios.get(`/userId/${username}`)
      },

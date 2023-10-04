@@ -14,6 +14,10 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 @PreAuthorize("isAuthenticated()")
 public class HoursController {
     @Autowired
