@@ -1,10 +1,9 @@
 <template>
+<div class="background">
 <form v-if: 
 v-on:submit.prevent="createItinerary()">
   <div class="monuments">
-  <div class="background">
-
-    <h1>Monuments HomePage</h1>
+    <h1>Monuments Home Page</h1>
     
         <div class="monumentCard" 
         v-for="monument in monumentsList" 
@@ -23,8 +22,8 @@ v-on:submit.prevent="createItinerary()">
         <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
       {{filteredList}}
   </div>
-  </div>
   </form>
+  </div>
 </template>
 
 <script>
@@ -80,8 +79,9 @@ export default {
 
 <style scoped>
 div.monumentCard {
-    border: 1px black solid;
-    border-radius: 6px;
+    border: 1px 0A3161;
+    background-color: white;
+    border-radius: 2px;
     padding: 1rem;
     margin: 10px;
     font: 12pt sans-serif;
@@ -91,13 +91,18 @@ img {
   height: 100px
 }
 
+h1 {
+  text-align: center;
+  color: white;
+  padding-top: 50px;
+
+}
+
 .background {
 position: absolute;
 top: 0;
 left: 0;
-width: 100%;
-height: 200%;
-background-color:  #ff0000; 
+background-color:  #B31942; 
 z-index: -1;  
 }
 

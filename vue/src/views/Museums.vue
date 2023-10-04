@@ -1,9 +1,8 @@
 <template>
+<div class="background">
 <form v-on:submit.prevent="createItinerary()">
-  <div class="monuments">
-    <div class="background">
-
-    <h1>Museums HomePage</h1>
+  <div class="museums">
+    <h1>Museums Home Page</h1>
     
     <div class="museumCard" 
     v-for="museum in museumsList" 
@@ -22,9 +21,8 @@
         <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
       {{filteredList}}
   </div>
-  </div>
-  </div>
   </form>
+  </div>
 </template>
 
 <script>
@@ -88,34 +86,34 @@ export default {
 };
 </script>
 
+
 <style scoped>
 div.museumCard {
-    border: 1px black solid;
+    border: 1px 0A3161;
     background-color: white;
     border-radius: 6px;
     padding: 1rem;
     margin: 20px;
     font: 12pt sans-serif;
-    
 }
+
 img {
   height: 100px;
 }
 
+h1 {
+  text-align: center;
+  color: white;
+  padding-top: 50px;
+
+}
+
 .background {
-<<<<<<< HEAD
 position: absolute;
 top: 0; 
 left: 0;
-height: 200%;
-background-color:  #473DFF; 
+background-color:  #0A3161; 
 z-index: -1; 
 }
 
 </style>
-=======
-  background-color: red;  
-}
-</style>
-
->>>>>>> main

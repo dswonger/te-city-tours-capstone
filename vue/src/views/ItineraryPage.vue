@@ -1,9 +1,11 @@
 <template>
 <div>
+  <div class="background">
   <itinerary-map></itinerary-map>
   <create-itinerary></create-itinerary>
-{{newItinerary}}
+  {{newItinerary}}
   </div>
+</div>
 </template>
 
 <script>
@@ -26,7 +28,18 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #a8c7e6;
+  color: white;
   margin-top: 60px;
 }
+
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #white; 
+  z-index: -1; 
+  }
 </style>

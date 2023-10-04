@@ -12,3 +12,11 @@
     <router-view />
   </div>
 </template>
+
+<style scoped>
+
+router-link{
+
+}
+
+</style>
