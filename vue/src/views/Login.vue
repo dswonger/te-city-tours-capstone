@@ -1,41 +1,54 @@
 <template>
   <div id="login">
     <div class="center">
-    <div class="background">
-     <div class="container">
-      <div class="content">
-    <form class="form-size" @submit.prevent="login">
-      <h1>Welcome to City Tours </h1>
-      <h1> Washington DC</h1>
-      <h1 >Please Sign In</h1>
-    
-      <div role="alert" v-if="invalidCredentials">
-        Invalid username and password!
-      </div>
-      <div role="alert" v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
-      </div>
+      <div class="background">
+        <div class="container">
+          <div class="content">
+            <form class="form-size" @submit.prevent="login">
+              <h1>Welcome to City Tours</h1>
+              <h1>Washington DC</h1>
+              <h1>Please Sign In</h1>
 
-      <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
-      </div>
+              <div role="alert" v-if="invalidCredentials">
+                Invalid username and password!
+              </div>
+              <div role="alert" v-if="this.$route.query.registration">
+                Thank you for registering, please sign in.
+              </div>
 
-      <div class="form-input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
+              <div class="form-input-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  v-model="user.username"
+                  required
+                  autofocus
+                />
+              </div>
+
+              <div class="form-input-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  v-model="user.password"
+                  required
+                />
+              </div>
+              <button type="submit">Sign in</button>
+              <p>
+                <router-link :to="{ name: 'register' }"
+                  >Need an account? Sign up.</router-link
+                >
+              </p>
+            </form>
+          </div>
+        </div>
       </div>
-      <button type="submit">Sign in</button>
-      <p>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
-    </form>
     </div>
-     </div>
-    </div>
-    </div>
-    </div>
+  </div>
 </template>
-
 
 <script scoped>
 import authService from "../services/AuthService";
@@ -47,31 +60,31 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           const response = error.response;
 
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -107,7 +120,7 @@ label {
 .center {
   display: flex;
   justify-content: center;
-} 
+}
 
 .centered-text {
   text-align: center;
@@ -127,10 +140,15 @@ h1 {
 .content {
   text-align: center; /* Center the text within the content div */
 }
-
 </style>
 
 <style scoped>
+#login {
+  display: flex;
+  justify-content: center;
+  height: 1000px;
+  width: 564px;
+}
 
   #login {
     display: flex;
@@ -143,9 +161,9 @@ h1 {
   .content {
   position: relative;
   z-index: 1; /* Place it above the background */
-  }
+}
 
-  .background {
+.background {
   position: absolute;
   top: 0;
   left: 0;
@@ -159,7 +177,7 @@ h1 {
     color: white;
   } */
 
-  /* #app {
+/* #app {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,8 +187,4 @@ h1 {
       0 2px 4px 0 rgba(0, 0, 0, 0.2),
       0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
   } */
-
-
 </style>
-
-

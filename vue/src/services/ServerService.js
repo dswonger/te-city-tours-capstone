@@ -26,11 +26,31 @@ export default {
         return axios.delete(`/Museum/${id}`);
     },
     // these need to be updated with the backend endpoints
+<<<<<<< HEAD
      createItinerary() {
          return axios.post(`/itinerary/create`);
+=======
+     createItinerary(newItinerary) {
+         return axios.post(`/itinerary/create`, newItinerary);
+>>>>>>> main
          
      },
-     getItinerary(id) {
+     getItinerary(id) { //call this to the itinerary page for logged in user
          return axios.get(`/itinerary/${id}`)
+     },
+     getAllItinerary() {
+        return axios.get(`/itinerary/getAll`)
+     },
+     findIdByUsername(username) {
+         return axios.get(`/userId/${username}`)
+     },
+     addReview(review) {
+         return axios.get('/addReview', review)
+     },
+     updateItinerary() {
+         return axios.put(`/itinerary/edit`)
+     },
+     getAllItineraries(){
+         return axios.get(`/itinerary/getAll`)
      }
 }

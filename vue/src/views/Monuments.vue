@@ -27,53 +27,50 @@ v-on:submit.prevent="createItinerary()">
 </template>
 
 <script>
-import service from '../services/ServerService'
+import service from "../services/ServerService";
 
 export default {
   name: "monuments",
   data() {
     return {
-      monumentsList : [],
+      monumentsList: [],
       filteredList: [],
-      addIfChecked: false 
-    }
+      newItinerary: {},
+
+      // date : '',
+      // text : ''
+    };
   },
   created() {
-    service.getAllMonuments().then(
-      (response) => {
-        this.monumentsList = response.data;
-      }
-    );
+    service.getAllMonuments().then((response) => {
+      this.monumentsList = response.data;
+    });
   },
   methods: {
-    // filterMonuments() {
-    //   if (this.addIfChecked) {
-    //     return this.filteredList.filter((monument) => monument.checked);
-    //   }else {
-    //     return this.filteredList
-    //   }
-    // },
-    filterMonuments(monumentId, itineraryDate, userId) {
-      this.filteredList.push(monumentId, itineraryDate, userId)
+    filterMonuments(monumentId) {
+      this.filteredList.push(monumentId);
     },
+    // newItineraryMethod(date, text) {
+    //   this.newItinerary.push(date, text)
+    // },
     createItinerary() {
-      service.createItinerary(this.filteredList).then(
-        (response) => {
+      service
+        .createItinerary(this.newItinerary)
+        .then((response) => {
           if (response.status === 200) {
-            this.$router.push(`/itineraryPage`);
+            window.alert('Itinerary Created');
+            
           }
-        }
-      ).catch(
-        (error) => {
-          if(error.response) {
-            window.alert('Bad Request');
-          } else if(error.request) {
-            window.alert('Could not reach service');
+        })
+        .catch((error) => {
+          if (error.response) {
+            window.alert("Bad Request");
+          } else if (error.request) {
+            window.alert("Could not reach service");
           }
-        }
-      );
-    }
-  }
+        });
+    },
+  },
 };
 </script>
 
@@ -88,7 +85,7 @@ div.monumentCard {
     
 }
 img {
-  height: 100px
+  height: 100px;
 }
 
 h1 {
