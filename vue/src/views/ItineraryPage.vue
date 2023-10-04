@@ -12,7 +12,7 @@
     <p>{{itinerary.date}}</p>
     <p>{{itinerary.locations}}</p>
   </div>
-  
+  </div>
   </div>
 
 </template>
