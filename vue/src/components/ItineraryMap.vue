@@ -47,7 +47,7 @@ export default {
       roundTrip : true,
       mapCenter: { lat: 38.904722, lng: -77.016389 },
       locations: [
-      "900 10th St NW, Washington, DC 20001",
+      "Type your starting point here",
       "1000 H St NW, Washington, DC 20001",
       "1475 Massachusetts Ave NW, Washington, DC 20005",
       ],

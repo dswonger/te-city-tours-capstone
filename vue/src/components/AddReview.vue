@@ -19,7 +19,7 @@
       </select>
     </div>
     <div class="form-element">
-      <label for="review">Review</label>
+      <label for="review">Review:</label>
       <textarea id="review" v-model="newReview.review"></textarea>
     </div>
     <div class="actions">
@@ -61,11 +61,14 @@ export default {
 </script>
 
 <style scoped>
+
 form {
   width: 500px;
   margin: 20px;
 }
 .form-element label {
+  display: flex;
+  
   width: 100px;
   vertical-align: top;
 }
@@ -84,4 +87,8 @@ textarea {
 .actions button {
   margin-left: 10px;
 }
+label{
+  padding: 10px;
+}
+
 </style>
