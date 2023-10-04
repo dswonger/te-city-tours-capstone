@@ -1,35 +1,51 @@
 <template>
 <div>
-  <div class="background">
+  <p>Select Itinerary to Create a Route</p>
+  <itinerary-select></itinerary-select>
   <itinerary-map></itinerary-map>
-  <create-itinerary></create-itinerary>
+
   
-{{itineraryList}} If you see this first, it isn't working.
-    <div class="itineraryCard"
-    v-for="itinerary in itineraryList"
-    v-bind:key="itinerary.id">
-    <h3>{{itinerary.name}}</h3>
-    <p>{{itinerary.date}}</p>
-    <p>{{itinerary.locations}}</p>
-  </div>
+
+    <!-- <itinerary-table-row
+    v-for="itinerary in filteredItinerary"
+    v-bind:key="itinerary.id"
+    v-bind:itinerary="itinerary"/>
+
+    <div v-show="filteredItinerary.length ==0"></div> -->
+
+ 
   
   </div>
 
 </template>
 
 <script>
-import CreateItinerary from '../components/CreateItinerary.vue'
-import ItineraryMap from '../components/ItineraryMap.vue'
-import service from '../services/ServerService'
 
+import ItineraryMap from '../components/ItineraryMap.vue'
+import ItinerarySelect from '../components/ItinerarySelect.vue'
+import service from '../services/ServerService'
+// import ItineraryTableRow from '../components/ItineraryTableRow.vue'
 export default {
   name: 'Map',
+  props: "",
   components: {
     ItineraryMap,
-    CreateItinerary,
+    ItinerarySelect,
+    // ItineraryTableRow
+  },
+  computed: {
+    filteredItinerary() {
+      const itineraryFilter = this.$store.state.filter;
+      return this.$store.state.itineraries.filter(
+        (itinerary) => {
+          return itineraryFilter ==0? true : itinerary.id == itineraryFilter;
+        }
+      )
+    }
   },
   data() {
     return {
+ 
       itineraryList : []
     }
   },

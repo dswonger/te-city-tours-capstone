@@ -1,8 +1,24 @@
 <template>
+<<<<<<< HEAD
+<div>
+   <h1>Museums Page</h1>
+     <p>Select Itinerary to Update</p>
+
+<itinerary-select></itinerary-select>
+
+<form v-on:submit.prevent="submitMuseums">
+
+  
+  <div class="monuments">
+    <div class="background">
+
+   
+=======
 <div class="background">
 <form v-on:submit.prevent="createItinerary()">
   <div class="museums">
     <h1>Museums Home Page</h1>
+>>>>>>> main
     
     <div class="museumCard" 
     v-for="museum in museumsList" 
@@ -13,12 +29,13 @@
         <img v-bind:src=" museum.image"/> 
         <p>Rating: {{museum.rate}}</p>
 
-        <div><input type="checkbox" name="museumName" value="museumId" 
+        <div><input type="radio" name="museumName" value="museumId" 
         unchecked @change="filterMuseums(museum.id)">Add to Itinerary</div>
        
         </div>
-         <div> <input type="date" name="itineraryDate" id="itineraryDate">Choose Date</div>
-        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
+           <button type="submit" v-if="$store.state.token != ''">
+          Update Itinerary!
+        </button>
       {{filteredList}}
   </div>
   </form>
@@ -27,9 +44,12 @@
 
 <script>
 import service from '../services/ServerService'
-
+import ItinerarySelect from '../components/ItinerarySelect.vue';
 export default {
   name: "museums",
+  components: {
+    ItinerarySelect
+  },
   data() {
     return {
       museumsList : [],
@@ -45,14 +65,15 @@ export default {
     );
   },
     methods: {
-      filterMuseums(museumId, itineraryDate) {
-        this.filteredList.push(museumId, itineraryDate)
+      filterMuseums(museumId) {
+        this.filteredList.push(museumId)
       },
-      createItinerary() {
-      service.createItinerary(this.filteredList).then(
+      
+    submitMuseums(filteredList) {
+      service.updateItinerary(filteredList).then(
         (response) => {
           if (response.status === 200) {
-            this.$router.push(`/itineraryPage`);
+            window.alert('Itinerary Updated!');
           }
         }
       ).catch(
@@ -65,23 +86,6 @@ export default {
         }
       );
     }
-    // submitMuseums() {
-    //   service.createItinerary(this.museum).then(
-    //     (response) => {
-    //       if (response.status === 200) {
-    //         this.$router.push(`/itineraryPage`);
-    //       }
-    //     }
-    //   ).catch(
-    //     (error) => {
-    //       if(error.response) {
-    //         window.alert('Bad Request');
-    //       } else if(error.request) {
-    //         window.alert('Could not reach service');
-    //       }
-    //     }
-    //   );
-    // }
   }
 };
 </script>

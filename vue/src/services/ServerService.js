@@ -47,10 +47,13 @@ export default {
      addReview(review) {
          return axios.get('/addReview', review)
      },
-     updateItinerary() {
-         return axios.put(`/itinerary/edit`)
+     updateItinerary(filteredList) {
+         return axios.put(`/itinerary/edit`, filteredList)
      },
      getAllItineraries(){
          return axios.get(`/itinerary/getAll`)
-     }
+     },
+    //  getAttractions() {
+    //      return axios.get(``)
+    //  }
 }

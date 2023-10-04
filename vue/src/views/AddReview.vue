@@ -15,5 +15,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+h1 {
+  display: flex;
+  align-content: center;
+  background-color: rgb(3, 3, 133);
+  color: white;
+}
+  
 </style>
