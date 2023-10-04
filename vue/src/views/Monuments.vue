@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
 <div>
     <h1>Monuments Page</h1>
   <p>Select Itinerary to Update</p>
@@ -36,31 +35,6 @@
         </button>
 {{ filteredList }}
     </div>
-=======
-<div class="background">
-<form v-if: 
-v-on:submit.prevent="createItinerary()">
-  <div class="monuments">
-    <h1>Monuments Home Page</h1>
-    
-        <div class="monumentCard" 
-        v-for="monument in monumentsList" 
-        v-bind:key="monument.id"
-        >
-        <h3>{{monument.name}}</h3> 
-        <p>{{monument.description}} </p>
-        <img v-bind:src=" monument.image"/>  
-        <p>Rating: {{monument.rate}}</p>
-
-        <div><input type="checkbox" id="monumentName" value="monumentId" 
-         unchecked @change="filterMonuments( monument.id )">Add to Itinerary</div>
-        
-        </div>
-         <div> <input type="date" name="itineraryDate" id="itineraryDate">Choose Date</div>
-        <button type="submit" v-if="$store.state.token != ''">Create Itinerary!</button>
-      {{filteredList}}
-  </div>
->>>>>>> main
   </form>
   </div>
 </template>

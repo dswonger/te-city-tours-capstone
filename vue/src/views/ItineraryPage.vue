@@ -1,11 +1,7 @@
 <template>
 <div>
-<<<<<<< HEAD
   <p>Select Itinerary to Create a Route</p>
   <itinerary-select></itinerary-select>
-=======
-  <div class="background">
->>>>>>> main
   <itinerary-map></itinerary-map>
 
   
