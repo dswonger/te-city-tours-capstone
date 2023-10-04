@@ -8,7 +8,7 @@
   </container>
   <form v-on:submit.prevent="updateItinerary">
     <div class="monuments">
-      <div class="background">
+      <div>
     
       <div
         class="monumentCard"
