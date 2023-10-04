@@ -3,11 +3,9 @@
   <div class="home">
   <div class="background">
     <h1>Welcome to Washington DC</h1>
-<<<<<<< HEAD
 <create-itinerary></create-itinerary>
     
         
-=======
     <h3> Washington, DC, the capital of the United States, is steeped in history and politics. Iconic landmarks like the White House, Capitol, and Washington Monument define its skyline. The city is a cultural hub, boasting world-renowned museums and galleries, particularly the Smithsonian Institution. Whether you're here for business or pleasure, please enjoy your stay in Washington, DC! </h3>
     <div class="image-container">
       <img src="@/images/17.jpg" alt="My Image" />
@@ -19,7 +17,6 @@
     </div>  
     <h2>Check out Washington DC's famous restaurants</h2>
   </div>
->>>>>>> main
   </div>
   </main>
 </template>

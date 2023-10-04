@@ -7,7 +7,7 @@
 
   <form v-on:submit.prevent="updateItinerary">
     <div class="monuments">
-
+      <div class="background">
     
       <div
         class="monumentCard"
@@ -33,7 +33,8 @@
            <button type="submit" v-if="$store.state.token != ''">
           View Itinerary!
         </button>
-{{ filteredList }}
+      {{ filteredList }}
+    </div>
     </div>
   </form>
   </div>

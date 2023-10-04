@@ -67,11 +67,13 @@ public class JdbcAttractionsDao implements AttractionsDao{
      try {
          int id = template.queryForObject(sql, Integer.class, newAttraction.getName(), newAttraction.getAddress(), newAttraction.getDescription(), newAttraction.getType());
          insert = getAttractionById(id);
+
      } catch (CannotGetJdbcConnectionException e) {
          throw new DaoException("Unable to connect to server or database", e);
      }catch (DataIntegrityViolationException e) {
          throw new DaoException("Data integrity violation", e);
      }
+
      return insert;
     }
 
@@ -109,13 +111,11 @@ public class JdbcAttractionsDao implements AttractionsDao{
             String sql = "UPDATE attractions SET type = ? WHERE id = ?;";
             template.update(sql, updatedAttraction.getType(), updatedAttraction.getId());
         }
-
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }catch (DataIntegrityViolationException e) {
             throw new DaoException( "Data integrity violation", e);
         }
-
         return getAttractionById(updatedAttraction.getId());
 
     }
