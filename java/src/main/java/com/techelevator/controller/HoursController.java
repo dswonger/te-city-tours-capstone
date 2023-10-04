@@ -5,55 +5,36 @@ import com.techelevator.model.Hours;
 import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
-<<<<<<< HEAD
-=======
+
 import org.springframework.security.access.prepost.PreAuthorize;
->>>>>>> main
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin
-<<<<<<< HEAD
-public class HoursController {
-    @Autowired
-    HoursDao dao;
-
-=======
 @PreAuthorize("isAuthenticated()")
 public class HoursController {
     @Autowired
     HoursDao dao;
     @PreAuthorize("permitAll")
->>>>>>> main
     @RequestMapping(path = "/{id}/hours", method = RequestMethod.GET)
     public Hours getHoursById (@PathVariable int id) {
         return dao.getHoursByAttractionId(id);
     }
-<<<<<<< HEAD
 
-=======
     @PreAuthorize("permitAll")
->>>>>>> main
     @RequestMapping (path ="/{id}/{day}", method = RequestMethod.PUT)
     public boolean updateHours (@PathVariable int id, @PathVariable String day, @RequestBody Hours newHours ) {
         return dao.updateHours(day,id, newHours);
     }
-<<<<<<< HEAD
-
-=======
     @PreAuthorize("hasRole('ROLE_ADMIN')")
->>>>>>> main
     @RequestMapping (path = "/addHours", method = RequestMethod.POST)
     public boolean addHours (@RequestBody Hours addHours) {
        return dao.addHours(addHours);
     }
-<<<<<<< HEAD
-
-=======
     @PreAuthorize("hasRole('ROLE_ADMIN')")
->>>>>>> main
     @RequestMapping (path = "/deleteHours/{id}", method = RequestMethod.DELETE)
     public int deleteHours (@PathVariable int id) {
         return dao.deleteHours(id);
