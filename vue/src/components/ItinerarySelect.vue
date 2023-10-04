@@ -2,7 +2,7 @@
 <div>
   <select v-model="selectedItinerary">
   <option v-for="itinerary in itineraries" v-bind:key="itinerary.id" >
-      {{itinerary.name}}
+      {{itinerary.name}}{{itinerary.id}}
   </option>
   
 
@@ -19,7 +19,9 @@ export default {
     data() {
         return {
             selectedItinerary: '',
-            itineraries: {}
+            itineraries: {},
+            selected: ''
+            
         }
     },
     created() {

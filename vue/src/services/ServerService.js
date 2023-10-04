@@ -48,7 +48,10 @@ export default {
      getAllItineraries(){
          return axios.get(`/itinerary/getAll`)
      },
-    //  getAttractions() {
-    //      return axios.get(``)
-    //  }
+     addAttractionToList(itineraryId, attractionId) {
+        return axios.put(`/itinerary/${itineraryId}/addAttraction/${attractionId}`)
+     },
+     removeAttractionFromList(itineraryId, attractionId) {
+        return axios.delete(`/itinerary/${itineraryId}/removeAttraction/${attractionId}`)
+     }
 }
