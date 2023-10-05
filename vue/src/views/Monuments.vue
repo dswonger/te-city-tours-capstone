@@ -27,7 +27,7 @@
             id="monumentName"
             value="Add to Itinerary"
             unchecked
-            @click="AddAttractionToList"
+            @click="addAttractionToList"
           >Add to Itinerary</button>
 
             <button
@@ -35,7 +35,7 @@
             id="monumentName"
             value="Remove from Itinerary"
             unchecked
-            @click="RemoveAttractionFromList"
+            @click="deleteAttractionFromList"
           >Remove from Itinerary</button>
         </div>
       </div>

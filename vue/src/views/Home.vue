@@ -8,7 +8,7 @@
         
     <h3> Washington, DC, the capital of the United States, is steeped in history and politics. Iconic landmarks like the White House, Capitol, and Washington Monument define its skyline. The city is a cultural hub, boasting world-renowned museums and galleries, particularly the Smithsonian Institution. Whether you're here for business or pleasure, please enjoy your stay in Washington, DC! </h3>
     <div class="image-container">
-      <img href="/allMonuments" src="@/images/17.jpg" alt="My Image" />
+      <img src="@/images/17.jpg" alt="My Image" />
       <img src="@/images/Cap1arena.jpg" alt="My Image2" />
       <img src="@/images/uscapital.jpg" alt="My Image3" />
       <img src="@/images/image5.jpg" alt="My Image3" />
