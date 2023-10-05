@@ -38,6 +38,10 @@
 <script >
 export default {
   name: "Map",
+  props: ['locationsList'],
+  created() {
+    this.locations = this.locationsList;
+  },
   data() {
     return {
       map: null,
@@ -46,11 +50,7 @@ export default {
       currentInput : "",
       roundTrip : true,
       mapCenter: { lat: 38.904722, lng: -77.016389 },
-      locations: [
-      "Type your starting point here",
-      "1000 H St NW, Washington, DC 20001",
-      "1475 Massachusetts Ave NW, Washington, DC 20005",
-      ],
+      locations: [],
     };
   },
 

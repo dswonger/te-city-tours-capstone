@@ -1,48 +1,47 @@
 <template>
-<div>
-      <form v-on:submit.prevent="createItinerary">
-          <div>
-        <input
-          v-model="newItinerary.date"
-          type="date"
-          id="itineraryDate"
-          value="itineraryDate"
-        />Choose the Date for Your Itinerary
-        <div>
-          <input
-            v-model="newItinerary.name"
-            type="text"
-            id="itineraryName"
-            value="iteneraryName"
-          />Name Your Itinerary
-        </div>
+  <div>
+    <h3>Create New Itinerary</h3>
+    <b-form @submit="onSubmit" @reset="onReset">
+      <b-form-group
+        id="input-group-1"
+        label="Choose the Date for Your Itinerary:"
+        label-for="input-1"
+      >
+        <b-form-datepicker id="input-1" v-model="newItinerary.date" class="mb-2"></b-form-datepicker>
+      </b-form-group>
 
-        <button type="submit" v-if="$store.state.token != ''">
-          Create Itinerary!
-        </button>
-        </div>
-      </form>
-      You must be logged in to create an itinerary.
-      </div>
+      <b-form-group id="input-group-2" label="Name Your Itinerary:" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          v-model="newItinerary.name"
+          placeholder="Enter name"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-button class="form-button" type="submit" variant="primary">Submit</b-button>
+      <b-button class="form-button" type="reset" variant="danger">Reset</b-button>
+    </b-form>
+  </div>
 </template>
 
 <script>
-import service from '../services/ServerService.js';
+import service from "../services/ServerService.js";
 
 export default {
-    data() {
-        return {
-            newItinerary: {}
-        }
-    },
-    methods: {
-        createItinerary() {
+  data() {
+    return {
+      newItinerary: {},
+    };
+  },
+  methods: {
+    onSubmit(event) {
+      event.preventDefault();
       service
         .createItinerary(this.newItinerary)
         .then((response) => {
           if (response.status === 200) {
-            window.alert('Itinerary Created');
-            
+            window.location.reload();
           }
         })
         .catch((error) => {
@@ -53,11 +52,16 @@ export default {
           }
         });
     },
-        }
-    }
-
+    onReset(event) {
+      event.preventDefault();
+      // Reset our form values
+      this.newItinerary = {};
+    },
+  },
+};
 </script>
-
-<style>
-
+<style scoped>
+  .form-button {
+    margin: 20px;
+  }
 </style>

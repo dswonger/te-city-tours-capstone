@@ -125,6 +125,8 @@ public class JdbcItineraryDao implements ItineraryDao {
 
         if (userId == target.getUserId()) {
             String sql = "DELETE FROM itinerary WHERE itinerary_id = ?;";
+            String sql2 = "DELETE FROM itinerary_attraction WHERE itinerary_id = ?;";
+            template.update(sql2,id);
             int numberOfRows= template.update(sql,id);
             return numberOfRows;
         } else {
@@ -133,18 +135,11 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     private Itinerary mapToRowsetItinerary(SqlRowSet res) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
-        try {
-            date = formatter.parse(res.getString("date_of_itinerary"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         Itinerary itinerary = new Itinerary();
         itinerary.setId(res.getInt("itinerary_id"));
         itinerary.setStartingPoint(res.getInt("starting_point"));
-        itinerary.setDate(date);
+        itinerary.setDate(res.getString("date_of_itinerary"));
         itinerary.setUserId(res.getInt("user_id"));
         itinerary.setName(res.getString("itinerary_name"));
 
