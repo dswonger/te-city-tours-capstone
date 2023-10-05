@@ -81,23 +81,6 @@ export default {
           }
         });
     },
-
-    // deleteAttractionFromList(id) {
-    //   service
-    //     .removeAttractionFromList(this.itineraryId, id)
-    //     .then((response) => {
-    //       if (response === 200) {
-    //         window.alert("Monument Removed!");
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       if (error.response) {
-    //         window.alert("Bad Request");
-    //       } else if (error.request) {
-    //         window.alert("Could not reach service");
-    //       }
-    //     });
-    // },
     filterMonuments(monumentName, monumentAddress) {
       this.filteredList.push(monumentName, monumentAddress);
     },
