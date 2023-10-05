@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-
+    currentItineraryId: '',
+  
     // filter: 0,
     // nextItineraryId: 1004,
     // itineraries: [
@@ -59,6 +60,9 @@ export default new Vuex.Store({
 
   
   mutations: {
+    SET_ACTIVE_ITINERARY(state, itineraryId) {
+      state.currentItineraryId = itineraryId
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);

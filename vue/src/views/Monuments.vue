@@ -24,7 +24,7 @@
         <div>
           <button
             type="button"
-            id="monumentName"
+            v-bind:id="monument.id"
             value="Add to Itinerary"
             unchecked
             @click="addAttractionToList"
@@ -73,8 +73,9 @@ export default {
     });
   },
   methods: {
-    addAttractionToList(){
-      service.addAttractionToList(this.itineraryId, this.monumentId)
+    addAttractionToList(event){
+      let itineraryId = this.$store.state.currentItineraryId
+      service.addAttractionToList(itineraryId, event.target.id)
         .then((response) => {
           if (response.status === 200) {
             window.alert('Monument Added!');

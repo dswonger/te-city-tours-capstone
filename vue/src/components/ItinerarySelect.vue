@@ -1,8 +1,8 @@
 <template>
 <div>
-  <select v-model="selectedItinerary">
-  <option v-for="itinerary in itineraries" v-bind:key="itinerary.id" @click="updateItinerary">
-      {{itinerary.name}}{{itinerary.id}}
+  <select v-model="selectedItinerary" @change="chooseItinerary">
+  <option v-for="itinerary in itineraries" v-bind:key="itinerary.id" v-bind:value="itinerary.id" >
+      {{itinerary.name}}
   </option>
   
 
@@ -26,12 +26,13 @@ export default {
     },
     created() {
         service.getAllItineraries().then((response) => {
+            console.log(response.data)
             this.itineraries = response.data;
         });
     },
     methods: {
-        updateItinerary(itineraryId, attractionId) {
-            this.itineraries.push(itineraryId, attractionId)
+        chooseItinerary(event) {
+            this.$store.commit('SET_ACTIVE_ITINERARY', event.target.value)           
         }
     }
 
