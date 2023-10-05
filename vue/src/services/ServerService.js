@@ -36,7 +36,12 @@ export default {
     addReview(review) {
         return axios.get('/addReview', review)
     },
-
+    addAttractionToList(itineraryId, attractionId) {
+        return axios.put(`/itinerary/${itineraryId}/addAttraction/${attractionId}`)
+    },
+    removeAttractionFromList(itineraryId, attractionId) {
+        return axios.delete(`/itinerary/${itineraryId}/removeAttraction/${attractionId}`)
+    },
 
 
 
