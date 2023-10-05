@@ -7,7 +7,7 @@ public class Itinerary {
     private int id;
     private int startingPoint;
     private List<Attractions> locations;
-    private Date date;
+    private String date;
     private int userId;
     private String name;
 
@@ -37,11 +37,11 @@ public class Itinerary {
         this.locations = locations;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -60,7 +60,7 @@ public class ItineraryController {
     // FOR Attractions AND Itinerary communicate
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    @RequestMapping(path = "/itinerary/{itineraryId}/addAttraction/{attractionId}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/itinerary/{itineraryId}/addAttraction/{attractionId}", method = RequestMethod.POST)
     public void addAttraction(@PathVariable int itineraryId, @PathVariable int attractionId) {
         dao.addAttraction(itineraryId, attractionId);
     }

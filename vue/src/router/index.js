@@ -11,6 +11,8 @@ import ItineraryPage from '../views/ItineraryPage.vue'
 import AddReview from '../views/AddReview.vue'
 import Itinerary from '../views/Itinerary.vue'
 import AddAttraction from '../views/AddAttraction.vue'
+import ItineraryDetail from '../views/ItineraryDetail.vue'
+
 Vue.use(Router)
 
 /**
@@ -86,6 +88,15 @@ const router = new Router({
       path: "/itinerary",
       name: "itinerary",
       component: Itinerary,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/itinerary/:itineraryId",
+      name: "itineraryDetail",
+      component: ItineraryDetail,
+      props:true,
       meta: {
         requiresAuth: true
       }

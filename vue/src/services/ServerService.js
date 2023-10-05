@@ -26,32 +26,44 @@ export default {
         return axios.delete(`/Museum/${id}`);
     },
     // these need to be updated with the backend endpoints
-     createItinerary(newItinerary) {
-         return axios.post(`/itinerary/create`, newItinerary);
-         
-     },
-     getItinerary(id) { //call this to the itinerary page for logged in user
-         return axios.get(`/itinerary/${id}`)
-     },
-     getAllItinerary() {
-        return axios.get(`/itinerary/getAll`)
-     },  
-     findIdByUsername(username) {
-         return axios.get(`/userId/${username}`)
-     },
-     addReview(review) {
-         return axios.get('/addReview', review)
-     },
-     updateItinerary(filteredList) {
-         return axios.put(`/itinerary/edit`, filteredList)
-     },
-     getAllItineraries(){
-         return axios.get(`/itinerary/getAll`)
-     },
-     addAttractionToList(itineraryId, attractionId) {
-        return axios.put(`/itinerary/${itineraryId}/addAttraction/${attractionId}`)
-     },
-     removeAttractionFromList(itineraryId, attractionId) {
+
+    //  getAttractions() {
+    //      return axios.get(``)
+    //  }
+    findIdByUsername(username) {
+        return axios.get(`/userId/${username}`)
+    },
+    addReview(review) {
+        return axios.get('/addReview', review)
+    },
+
+
+    // Add and remove attraction from itinerary
+    addAttractionToList(itineraryId, attractionId) {
+        return axios.post(`/itinerary/${itineraryId}/addAttraction/${attractionId}`)
+    },
+    removeAttractionFromList(itineraryId, attractionId) {
+        console.log("Test: " + itineraryId + " ----- " + attractionId)
         return axios.delete(`/itinerary/${itineraryId}/removeAttraction/${attractionId}`)
-     }
+    },
+
+
+
+
+    // Itinerary
+    updateItinerary(filteredList) {
+        return axios.put(`/itinerary/edit`, filteredList)
+    },
+    getAllItineraries(){
+        return axios.get(`/itinerary/getAll`)
+    },
+    createItinerary(newItinerary) {
+    return axios.post(`/itinerary/create`, newItinerary);
+    },
+    getItinerary(id) {
+        return axios.get(`/itinerary/${id}`)
+    },
+    deleteItinerary(id) {
+        return axios.delete(`/itinerary/delete/${id}`)
+    }
 }
