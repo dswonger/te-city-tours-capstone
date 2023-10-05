@@ -1,16 +1,17 @@
 <template>
 
-<div>
+<div class="background">
+  <container class="container">
    <h1>Museums Page</h1>
      <p>Select Itinerary to Update</p>
 
-<itinerary-select></itinerary-select>
-
+  <itinerary-select></itinerary-select>
+</container>
 <form v-on:submit.prevent="submitMuseums">
 
   
   <div class="monuments">
-    <div class="background">
+    <div >
 
    
     
@@ -33,6 +34,7 @@
       {{filteredList}}
   </div>
   </div>
+  
   </form>
   </div>
   
@@ -88,6 +90,8 @@ export default {
 
 
 <style scoped>
+
+
 div.museumCard {
     border: 1px 0A3161;
     background-color: white;
@@ -95,6 +99,8 @@ div.museumCard {
     padding: 1rem;
     margin: 20px;
     font: 12pt sans-serif;
+  
+    
 }
 
 img {

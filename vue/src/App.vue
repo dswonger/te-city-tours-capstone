@@ -21,9 +21,18 @@
   padding: 8px;
   background-color: #dddddd;
   color: white;
+  border-radius: 20px;
+  width: 450px;
+  text-align: center;
+  position: fixed;
+  z-index: 1;
 }
 #nav link:hover {
   background-color: red;
+}
+
+body {
+  margin: 0px !important;
 }
 
 </style>

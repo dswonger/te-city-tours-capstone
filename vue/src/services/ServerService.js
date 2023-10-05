@@ -26,7 +26,7 @@ export default {
         return axios.delete(`/Museum/${id}`);
     },
     // these need to be updated with the backend endpoints
-    
+
     //  getAttractions() {
     //      return axios.get(``)
     //  }

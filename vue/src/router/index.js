@@ -10,6 +10,7 @@ import Museums from '../views/Museums.vue'
 import ItineraryPage from '../views/ItineraryPage.vue'
 import AddReview from '../views/AddReview.vue'
 import Itinerary from '../views/Itinerary.vue'
+import AddAttraction from '../views/AddAttraction.vue'
 import ItineraryDetail from '../views/ItineraryDetail.vue'
 
 Vue.use(Router)
@@ -107,7 +108,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+    path: `/itinerary/:itineraryId/addAttraction/:attractionId`,
+    name: "addAttraction",
+    component: AddAttraction,
+    meta: {
+      requiresAuth: true
     }
+  },
   ]
 })
 

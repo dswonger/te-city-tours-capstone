@@ -1,13 +1,14 @@
 <template>
-<div>
+<div class="background">
+  <container class="container">
     <h1>Monuments Page</h1>
   <p>Select Itinerary to Update</p>
 
-<itinerary-select></itinerary-select>
-
+    <itinerary-select></itinerary-select>
+  </container>
   <form v-on:submit.prevent="updateItinerary">
     <div class="monuments">
-      <div class="background">
+      <div>
     
       <div
         class="monumentCard"
@@ -21,13 +22,21 @@
         <p>Rating: {{ monument.rate }}</p>
 
         <div>
-          <input
-            type="radio"
+          <button
+            type="button"
             id="monumentName"
-            value="monumentId"
+            value="Add to Itinerary"
             unchecked
-            @change="filterMonuments(monument.name, monument.address)"
-          />Add to Itinerary
+            @click="addAttractionToList"
+          >Add to Itinerary</button>
+
+            <button
+            type="button"
+            id="monumentName"
+            value="Remove from Itinerary"
+            unchecked
+            @click="deleteAttractionFromList"
+          >Remove from Itinerary</button>
         </div>
       </div>
            <button type="submit" v-if="$store.state.token != ''">
@@ -54,7 +63,8 @@ export default {
     return {
       monumentsList: [],
       filteredList: [],
-      active: false
+      itineraryId: '',
+      monumentId: ''
     };
   },
   created() {
@@ -63,9 +73,37 @@ export default {
     });
   },
   methods: {
-    // toggle() {
-    //   this.active = !this.active
-    // },
+    addAttractionToList(){
+      service.addAttractionToList(this.itineraryId, this.monumentId)
+        .then((response) => {
+          if (response.status === 200) {
+            window.alert('Monument Added!');
+          } 
+          })
+          .catch((error) => {
+          if (error.response) {
+            window.alert("Bad Request");
+          } else if (error.request) {
+            window.alert("Could not reach service");
+          }
+          });
+      },
+
+    deleteAttractionFromList(){
+      service.removeAttractionFromList(this.itinerary, this.monumentId)
+        .then((response) => {
+          if (response === 200) {
+            window.alert('Monument Removed!');
+          }
+        })
+          .catch((error) => {
+          if (error.response) {
+            window.alert("Bad Request");
+          } else if (error.request) {
+            window.alert("Could not reach service");
+          }
+          });
+    },
     filterMonuments(monumentName, monumentAddress) {
       this.filteredList.push(monumentName, monumentAddress);
     },
@@ -94,7 +132,7 @@ export default {
     //     });
     // },
     
-  }
+  } 
 };
 </script>
 
@@ -102,9 +140,9 @@ export default {
 div.monumentCard {
     border: 1px 0A3161;
     background-color: white;
-    border-radius: 2px;
+    border-radius: 6px;
     padding: 1rem;
-    margin: 10px;
+    margin: 20px;
     font: 12pt sans-serif;
     
 }
