@@ -1,7 +1,7 @@
 <template>
 <div>
   <select v-model="selectedItinerary">
-  <option v-for="itinerary in itineraries" v-bind:key="itinerary.id" >
+  <option v-for="itinerary in itineraries" v-bind:key="itinerary.id" @click="updateItinerary">
       {{itinerary.name}}{{itinerary.id}}
   </option>
   
@@ -28,7 +28,13 @@ export default {
         service.getAllItineraries().then((response) => {
             this.itineraries = response.data;
         });
+    },
+    methods: {
+        updateItinerary(itineraryId, attractionId) {
+            this.itineraries.push(itineraryId, attractionId)
+        }
     }
+
 }
 </script>
 

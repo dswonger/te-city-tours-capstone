@@ -99,7 +99,7 @@ const router = new Router({
       }
     },
     {
-    path: `/itinerary/1/addAttraction/:attractionId`,
+    path: `/itinerary/:itineraryId/addAttraction/:attractionId`,
     name: "addAttraction",
     component: AddAttraction,
     meta: {
