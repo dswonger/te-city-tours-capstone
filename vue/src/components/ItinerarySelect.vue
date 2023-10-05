@@ -1,43 +1,42 @@
 <template>
-<div>
-  <select v-model="selectedItinerary">
-  <option v-for="itinerary in itineraries" v-bind:key="itinerary.id" @click="updateItinerary">
-      {{itinerary.name}}{{itinerary.id}}
-  </option>
-  
-
-  </select>
-  
-  
+  <div>
+    <select v-model="selectedItinerary" @change="updateItinerary(selectedItinerary)">
+      <option
+        v-for="itinerary in itineraries"
+        :key="itinerary.id"
+        :value="itinerary.id"
+      >
+        {{ itinerary.name }}
+      </option>
+    </select>
   </div>
 </template>
 
 <script>
 import service from "../services/ServerService";
 export default {
-    name: "select",
-    data() {
-        return {
-            selectedItinerary: '',
-            itineraries: {},
-            selected: ''
-            
-        }
-    },
-    created() {
-        service.getAllItineraries().then((response) => {
-            this.itineraries = response.data;
-        });
-    },
-    methods: {
-        updateItinerary(itineraryId, attractionId) {
-            this.itineraries.push(itineraryId, attractionId)
-        }
-    }
-
-}
+  name: "select",
+  props: {
+      updateItineraryId: Function,
+  },
+  data() {
+    return {
+      selectedItinerary: "",
+      itineraries: {},
+    };
+  },
+  created() {
+    service.getAllItineraries().then((response) => {
+      this.itineraries = response.data;
+    });
+  },
+  methods: {
+      updateItinerary(id) {
+          this.updateItineraryId(id);
+      }
+  }
+};
 </script>
 
 <style>
-
 </style>

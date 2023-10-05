@@ -36,10 +36,14 @@ export default {
     addReview(review) {
         return axios.get('/addReview', review)
     },
+
+
+    // Add and remove attraction from itinerary
     addAttractionToList(itineraryId, attractionId) {
-        return axios.put(`/itinerary/${itineraryId}/addAttraction/${attractionId}`)
+        return axios.post(`/itinerary/${itineraryId}/addAttraction/${attractionId}`)
     },
     removeAttractionFromList(itineraryId, attractionId) {
+        console.log("Test: " + itineraryId + " ----- " + attractionId)
         return axios.delete(`/itinerary/${itineraryId}/removeAttraction/${attractionId}`)
     },
 
@@ -47,6 +51,9 @@ export default {
 
 
     // Itinerary
+    updateItinerary(filteredList) {
+        return axios.put(`/itinerary/edit`, filteredList)
+    },
     getAllItineraries(){
         return axios.get(`/itinerary/getAll`)
     },

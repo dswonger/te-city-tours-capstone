@@ -1,6 +1,6 @@
 <template>
   <div>
-    <itinerary-map v-bind:locationsList="getLocations()"/>
+    <itinerary-map v-bind:itinerary="itinerary"/>
   </div>
 </template>
 
@@ -21,13 +21,6 @@ export default {
   },
   created() {
     service.getItinerary(this.itineraryId).then(res => this.itinerary = res.data);
-  },
-  methods: {
-    getLocations() {
-      const list = this.itinerary.locations;
-      console.log("------aaaaaaa--------")
-      return list.map(x => x["address"]);
-    }
   }
 };
 </script>

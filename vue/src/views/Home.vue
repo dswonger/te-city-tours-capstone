@@ -16,20 +16,15 @@
       <img src="@/images/image7.jpg" alt="My Image3" />
     </div>  
     <h2>Check out Washington DC's famous restaurants</h2>
-
-
-     <div> <create-itinerary></create-itinerary> </div>
   </div>
   </div>
   </main>
 </template>
 
 <script>
-import CreateItinerary from '../components/CreateItinerary.vue';
 import service from '../services/ServerService'
 
 export default {
-  components: { CreateItinerary },
   name: "home",
   data() {
     return {

@@ -45,7 +45,4 @@ export default {
 </script>
 
 <style>
-div {
-    top: 20px;
-}
 </style>

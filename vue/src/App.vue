@@ -5,7 +5,7 @@
       <router-link id="link" v-bind:to="{ name: `museums` }">Museums</router-link>&nbsp;&nbsp;
       <router-link id="link" v-bind:to="{ name: `monuments` }">Monuments</router-link>&nbsp;&nbsp;
       <router-link id="link" v-bind:to="{ name: `itinerary` }" v-if="$store.state.token != ''">My Itinerary</router-link>&nbsp;
-      <router-link id="link" v-bind:to="{ name: 'login'}" >Login</router-link>&nbsp;&nbsp;
+      <router-link id="link" v-bind:to="{ name: 'login'}" v-if="$store.state.token == ''">Login</router-link>&nbsp;&nbsp;
       <router-link id="link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>&nbsp;&nbsp;
       
     </nav>
@@ -21,10 +21,7 @@
   padding: 8px;
   background-color: #dddddd;
   color: white;
-  border-radius: 20px;
-  width: 450px;
   text-align: center;
-  position: fixed;
   z-index: 1;
 }
 #nav link:hover {

@@ -1,70 +1,59 @@
 <template>
-<div class="background">
-  <container class="container">
-    <h1>Monuments Page</h1>
-  <p>Select Itinerary to Update</p>
+  <div class="background">
+    <container class="container">
+      <h1>Monuments Page</h1>
+      <p>Select Itinerary to Update</p>
 
-    <itinerary-select></itinerary-select>
-  </container>
-  <form v-on:submit.prevent="updateItinerary">
-    <div class="monuments">
-      <div>
-    
-      <div
-        class="monumentCard"
-        v-for="monument in monumentsList"
-        v-bind:key="monument.id"
-      >
-        <h3>{{ monument.name }}</h3>
-        <p>{{ monument.description }}</p>
-        <p>{{monument.address}}</p>
-        <img v-bind:src="monument.image" />
-        <p>Rating: {{ monument.rate }}</p>
-
+      <itinerary-select   v-bind:updateItineraryId = "updateItineraryId"></itinerary-select>
+    </container>
+    <form v-on:submit.prevent="addAttractionToList">
+      <div class="monuments">
         <div>
-          <button
-            type="button"
-            id="monumentName"
-            value="Add to Itinerary"
-            unchecked
-            @click="addAttractionToList"
-          >Add to Itinerary</button>
+          <div
+            class="monumentCard"
+            v-for="monument in monumentsList"
+            v-bind:key="monument.id"
+          >
+            <h3>{{ monument.name }}</h3>
+            <p>{{ monument.description }}</p>
+            <p>{{ monument.address }}</p>
+            <img v-bind:src="monument.image" />
+            <p>Rating: {{ monument.rate }}</p>
 
-            <button
-            type="button"
-            id="monumentName"
-            value="Remove from Itinerary"
-            unchecked
-            @click="deleteAttractionFromList"
-          >Remove from Itinerary</button>
+            <div>
+              <button
+                type="button"
+                id="monumentName"
+                @click="addAttractionToList(monument.id)"
+              >
+                Add to Itinerary
+              </button>
+            </div>
+          </div>
+          <button type="submit" v-if="$store.state.token != ''">
+            View Itinerary!
+          </button>
+          {{ filteredList }}
         </div>
       </div>
-           <button type="submit" v-if="$store.state.token != ''">
-          View Itinerary!
-        </button>
-      {{ filteredList }}
-    </div>
-    </div>
-  </form>
+    </form>
   </div>
 </template>
 
 <script>
-import ItinerarySelect from '../components/ItinerarySelect.vue';
+import ItinerarySelect from "../components/ItinerarySelect.vue";
 import service from "../services/ServerService";
 
 export default {
   name: "monuments",
   components: {
-    ItinerarySelect
-   
+    ItinerarySelect,
   },
   data() {
     return {
       monumentsList: [],
       filteredList: [],
-      itineraryId: '',
-      monumentId: ''
+      itineraryId: "",
     };
   },
   created() {
@@ -73,54 +62,32 @@ export default {
     });
   },
   methods: {
-    addAttractionToList(){
-      service.addAttractionToList(this.itineraryId, this.monumentId)
+    updateItineraryId(id) {
+      this.itineraryId = id;
+    },
+    addAttractionToList(id) {
+      service
+        .addAttractionToList(this.itineraryId, id)
         .then((response) => {
           if (response.status === 200) {
-            window.alert('Monument Added!');
-          } 
-          })
-          .catch((error) => {
-          if (error.response) {
-            window.alert("Bad Request");
-          } else if (error.request) {
-            window.alert("Could not reach service");
-          }
-          });
-      },
-
-    deleteAttractionFromList(){
-      service.removeAttractionFromList(this.itinerary, this.monumentId)
-        .then((response) => {
-          if (response === 200) {
-            window.alert('Monument Removed!');
+            window.alert("Monument Added!");
           }
         })
-          .catch((error) => {
+        .catch((error) => {
           if (error.response) {
             window.alert("Bad Request");
           } else if (error.request) {
             window.alert("Could not reach service");
           }
-          });
+        });
     },
-    filterMonuments(monumentName, monumentAddress) {
-      this.filteredList.push(monumentName, monumentAddress);
-    },
-    // addToItinerary() {
-    //this.filteredList.monumentArray = monumentArray;
-    // this.$store.commit("ADD_ITINERARY", this.filteredList)
-    // }
-    // newItineraryMethod(date, text) {
-    //   this.newItinerary.push(date, text)
-    // },
-    // createItinerary() {
+
+    // deleteAttractionFromList(id) {
     //   service
-    //     .createItinerary(this.newItinerary)
+    //     .removeAttractionFromList(this.itineraryId, id)
     //     .then((response) => {
-    //       if (response.status === 200) {
-    //         window.alert('Itinerary Created');
-            
+    //       if (response === 200) {
+    //         window.alert("Monument Removed!");
     //       }
     //     })
     //     .catch((error) => {
@@ -131,20 +98,21 @@ export default {
     //       }
     //     });
     // },
-    
-  } 
+    filterMonuments(monumentName, monumentAddress) {
+      this.filteredList.push(monumentName, monumentAddress);
+    },
+  },
 };
 </script>
 
 <style scoped>
 div.monumentCard {
-    border: 1px 0A3161;
-    background-color: white;
-    border-radius: 6px;
-    padding: 1rem;
-    margin: 20px;
-    font: 12pt sans-serif;
-    
+  border: 1px 0A3161;
+  background-color: white;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 20px;
+  font: 12pt sans-serif;
 }
 img {
   height: 100px;
@@ -154,16 +122,13 @@ h1 {
   text-align: center;
   color: white;
   padding-top: 50px;
-
 }
 
 .background {
-position: absolute;
-top: 0;
-left: 0;
-background-color:  #B31942; 
-z-index: -1;  
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #b31942;
+  z-index: -1;
 }
-
-
 </style>
