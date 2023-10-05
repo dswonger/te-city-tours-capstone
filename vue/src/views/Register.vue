@@ -80,4 +80,13 @@ export default {
 label {
   margin-right: 0.5rem;
 }
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500%;
+  height: 100vh;
+  background-image:'/src/images/capital2.jpg'1; 
+  z-index: -1; 
+  }
 </style>

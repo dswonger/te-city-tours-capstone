@@ -2,7 +2,7 @@
   <div class="background">
     <container class="container">
       <h1>Museums Page</h1>
-      <p>Select Itinerary to Update</p>
+      <p v-bind:style="{ color: '#f2f2f2' }" >Select Itinerary to Update</p>
       <itinerary-select v-bind:updateItineraryId = "updateItineraryId"></itinerary-select>
     </container>
     <form v-on:submit.prevent="addAttractionToList">

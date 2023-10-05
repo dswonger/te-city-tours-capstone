@@ -14,8 +14,30 @@
       <img src="@/images/image5.jpg" alt="My Image3" />
       <img src="@/images/image6.jpg" alt="My Image3" />
       <img src="@/images/image7.jpg" alt="My Image3" />
-    </div>  
-    <h2>Check out Washington DC's famous restaurants</h2>
+    </div> 
+    <h2>Check out Washington DC's famous attractions</h2>
+    <b-container class =  "image-container">
+      <b-col cols="3">
+        <a href="http://localhost:8080/allMuseums">
+          <b-row>
+            <img src="@/images/phot2.jpg" alt="Link Image">
+          </b-row>
+          <b-row>
+            <b-col lg="4" class="pb-2"><b-button size="sm" variant="outline-info">Museums</b-button></b-col>
+          </b-row>
+        </a>
+      </b-col>
+      <b-col cols="3">
+        <a href="http://localhost:8080/allMonuments">
+          <b-row align-v="center">
+            <img src="@/images/photo1.jpg" alt="Link Image">
+          </b-row>
+           <b-row align-v="center">
+              <b-col lg="4" class="pb-2"><b-button size="sm" variant="outline-info">Monuments</b-button></b-col>
+           </b-row>
+        </a>
+      </b-col>
+    </b-container>
   </div>
   </div>
   </main>
