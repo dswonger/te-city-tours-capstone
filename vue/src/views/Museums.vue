@@ -30,7 +30,7 @@
           <!-- <button type="submit" v-if="$store.state.token != ''">
             Update Itinerary!
           </button> -->
-          <!-- {{ filteredList }} -->
+          {{ filteredList }}
         </div>
       </div>
     </form>
