@@ -16,7 +16,7 @@
             <h3>{{ museum.name }}</h3>
             <p>{{ museum.description }}</p>
             <img v-bind:src="museum.image" />
-            <p>Rating: {{ museum.rate }}</p>
+            <!-- <p>Rating: {{ museum.rate }}</p> -->
             <div>
               <button
                 type="button"
@@ -27,10 +27,10 @@
               </button>
             </div>
           </div>
-          <button type="submit" v-if="$store.state.token != ''">
+          <!-- <button type="submit" v-if="$store.state.token != ''">
             Update Itinerary!
-          </button>
-          {{ filteredList }}
+          </button> -->
+          <!-- {{ filteredList }} -->
         </div>
       </div>
     </form>
@@ -86,7 +86,7 @@ export default {
         .addAttractionToList(this.itineraryId, id)
         .then((response) => {
           if (response.status === 200) {
-            window.alert("Monument Added!");
+            window.alert("Museum Added!");
           }
         })
         .catch((error) => {

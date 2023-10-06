@@ -18,7 +18,7 @@
             <p>{{ monument.description }}</p>
             <p>{{ monument.address }}</p>
             <img v-bind:src="monument.image" />
-            <p>Rating: {{ monument.rate }}</p>
+            <!-- <p>Rating: {{ monument.rate }}</p> -->
 
             <div>
               <button
@@ -30,10 +30,10 @@
               </button>
             </div>
           </div>
-          <button type="submit" v-if="$store.state.token != ''">
+          <!-- <button type="submit" v-if="$store.state.token != ''">
             View Itinerary!
-          </button>
-          {{ filteredList }}
+          </button> -->
+          <!-- {{ filteredList }} -->
         </div>
       </div>
     </form>
